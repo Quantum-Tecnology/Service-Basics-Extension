@@ -5,7 +5,7 @@ namespace GustavoSantarosa\EnumBasicsExtension\Provider;
 use Illuminate\Support\ServiceProvider;
 use GustavoSantarosa\ServiceBasicsExtension\BaseService;
 
-class EnumBasicsExtensionProvider extends ServiceProvider
+class ServiceBasicsExtensionProvider extends ServiceProvider
 {
     public $bindings = [
         ServerProvider::class => BaseService::class,
