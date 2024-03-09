@@ -1,6 +1,6 @@
 <?php
 
-namespace GustavoSantarosa\EnumBasicsExtension\Provider;
+namespace GustavoSantarosa\ServiceBasicsExtension\Provider;
 
 use Illuminate\Support\ServiceProvider;
 use GustavoSantarosa\ServiceBasicsExtension\BaseService;
