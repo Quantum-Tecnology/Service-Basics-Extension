@@ -1,0 +1,39 @@
+{
+  "name": "gustavosantarosa/service-basics-extension",
+  "license": "MIT",
+  "homepage": "http://www.gustavosantarosa.esy.es/",
+  "description": "Service Basics Extension",
+  "require": {
+    "php": "^8.0",
+    "laravel/framework": "^10.0",
+    "gustavosantarosa/validate-trait": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "GustavoSantarosa\\ServiceBasicsExtension\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Luis Gustavo Santarosa",
+      "email": "gustavo-computacao@hotmail.com",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "email": "gustavo-computacao@hotmail.com"
+  },
+  "minimum-stability": "dev",
+  "extra": {
+    "laravel": {
+      "providers": [
+        "GustavoSantarosa\\ServiceBasicsExtension\\Provider\\ServiceBasicsExtensionProvider"
+      ]
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "php-http/discovery": true
+    }
+  }
+}
