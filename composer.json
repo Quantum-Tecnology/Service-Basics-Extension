@@ -5,8 +5,9 @@
   "description": "Service Basics Extension",
   "require": {
     "php": "^8.0",
-    "laravel/framework": "^10.0",
-    "gustavosantarosa/validate-trait": "^1.0"
+    "laravel/framework": "^10.0 | ^11.0",
+    "gustavosantarosa/validate-trait": "^1.0",
+    "gustavosantarosa/perpage-trait": "^1.0"
   },
   "autoload": {
     "psr-4": {

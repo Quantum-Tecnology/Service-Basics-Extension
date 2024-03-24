@@ -2,19 +2,25 @@
 
 namespace GustavoSantarosa\ServiceBasicsExtension;
 
+use GustavoSantarosa\PerPageTrait\PerPageTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use GustavoSantarosa\ValidateTrait\ValidateTrait;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class BaseService
 {
     use ValidateTrait;
+    use PerPageTrait;
 
     protected ?Model $model;
 
-    public function index(): Collection
+    public function index(): LengthAwarePaginator | Collection
     {
-        return $this->model::get();
+        $query = $this->model::query();
+
+        return $this->result($query);
     }
 
     public function show(int $id): Model
