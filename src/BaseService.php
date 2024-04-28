@@ -3,11 +3,10 @@
 namespace GustavoSantarosa\ServiceBasicsExtension;
 
 use GustavoSantarosa\PerPageTrait\PerPageTrait;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
 use GustavoSantarosa\ValidateTrait\ValidateTrait;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 
 class BaseService
 {
@@ -16,7 +15,7 @@ class BaseService
 
     protected ?Model $model;
 
-    public function index(): LengthAwarePaginator | Collection
+    public function index(): LengthAwarePaginator|Collection
     {
         $query = $this->model::query();
 
