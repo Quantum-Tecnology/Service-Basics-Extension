@@ -76,7 +76,11 @@ class BaseService
             $this->unprocessableEntityException('Parameter search not enabled this route.');
         }
 
-        $query->orderby(request()->sortby ?? 'id', request()->sort ?? 'asc');
+        if ('random' === request()->sortby) {
+            $query->inRandomOrder();
+        } else {
+            $query->orderby(request()->sortby ?? 'id', request()->sort ?? 'asc');
+        }
 
         return $this->result($query);
     }
