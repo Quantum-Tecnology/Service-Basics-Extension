@@ -101,7 +101,7 @@ class BaseService
         $data = !$this->existsData ? $this->validate(toArray: true) : $this->data;
 
         $transaction = DB::transaction(function () use ($data) {
-            $callback = $this->defaultModel->create((array) $data);
+            $callback = $this->defaultModel->create($data->toArray());
 
             foreach ($data as $indice => $value) {
                 if (is_array($value)) {
@@ -122,7 +122,7 @@ class BaseService
         $model = $this->show($id);
 
         $transaction = DB::transaction(function () use ($data, $model) {
-            $model->update((array) $data);
+            $model->update($data->toArray());
 
             foreach ($data as $indice => $value) {
                 if (is_array($value)) {
