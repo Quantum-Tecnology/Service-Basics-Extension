@@ -76,11 +76,7 @@ class BaseService
             $this->unprocessableEntityException('Parameter search not enabled this route.');
         }
 
-        if ('random' === request()->sortby) {
-            $query->inRandomOrder();
-        } else {
-            $query->orderby(request()->sortby ?? 'id', request()->sort ?? 'asc');
-        }
+        $query->orderby(request()->sortby ?? 'id', request()->sort ?? 'asc');
 
         return $this->result($query);
     }
@@ -98,7 +94,7 @@ class BaseService
 
     public function store(): Model
     {
-        $data = !$this->existsData ? $this->validate(toArray: true) : $this->data;
+        $data = !$this->existsData ? $this->validate() : $this->data;
 
         $transaction = DB::transaction(function () use ($data) {
             $callback = $this->defaultModel->create($data->toArray());
@@ -118,7 +114,7 @@ class BaseService
 
     public function update(int $id): Model
     {
-        $data  = !$this->existsData ? $this->validate(toArray: true) : $this->data;
+        $data  = !$this->existsData ? $this->validate() : $this->data;
         $model = $this->show($id);
 
         $transaction = DB::transaction(function () use ($data, $model) {
