@@ -26,7 +26,7 @@ class BaseService
     protected bool $qaTest            = false;
     protected $authUser;
 
-    protected string $model;
+    protected $model;
 
     protected ?Model $defaultModel;
 
