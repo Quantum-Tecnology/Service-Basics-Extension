@@ -4,6 +4,7 @@ namespace GustavoSantarosa\ServiceBasicsExtension;
 
 use GustavoSantarosa\HandlerBasicsExtension\Traits\ApiResponseTrait;
 use GustavoSantarosa\PerPageTrait\PerPageTrait;
+use GustavoSantarosa\ValidateTrait\AutoDataTrait;
 use GustavoSantarosa\ValidateTrait\ValidateTrait;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
@@ -17,6 +18,7 @@ class BaseService
     use ValidateTrait;
     use PerPageTrait;
     use ApiResponseTrait;
+    use AutoDataTrait;
 
     protected bool $paginationEnabled = true;
     protected bool $softDeleteEnabled = true;
@@ -38,6 +40,11 @@ class BaseService
     protected array $searchableColumns = [];
 
     protected array $searchableRelations = [];
+
+    protected $initializedAutoDataTrait = [
+        'store',
+        'update',
+    ];
 
     public function __construct()
     {
@@ -112,7 +119,7 @@ class BaseService
 
     public function store(): Model
     {
-        $data = !$this->existsData ? $this->validate() : $this->data;
+        $data = !$this->existsData ? request()->data : $this->data;
 
         $transaction = DB::transaction(function () use ($data) {
             $callback = $this->defaultModel->create($data->toArray());
@@ -132,7 +139,7 @@ class BaseService
 
     public function update(int $id): Model
     {
-        $data  = !$this->existsData ? $this->validate() : $this->data;
+        $data  = !$this->existsData ? request()->data : $this->data;
         $model = $this->show($id);
 
         $transaction = DB::transaction(function () use ($data, $model) {
@@ -238,7 +245,7 @@ class BaseService
 
     public function setSegmentData(
         object $data,
-        array $segmentAttributes
+        array $segmentAttributes,
     ): Collection {
         foreach ($segmentAttributes as $attribute) {
             if (isset($data->$attribute)) {
