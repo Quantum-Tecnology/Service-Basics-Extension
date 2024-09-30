@@ -3,14 +3,9 @@
 namespace GustavoSantarosa\ServiceBasicsExtension\Provider;
 
 use Illuminate\Support\ServiceProvider;
-use GustavoSantarosa\ServiceBasicsExtension\BaseService;
 
 class ServiceBasicsExtensionProvider extends ServiceProvider
 {
-    public $bindings = [
-        ServerProvider::class => BaseService::class,
-    ];
-
     /**
      * Register services.
      *
@@ -18,7 +13,6 @@ class ServiceBasicsExtensionProvider extends ServiceProvider
      */
     public function register()
     {
-        //
     }
 
     /**
@@ -28,6 +22,5 @@ class ServiceBasicsExtensionProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
     }
 }
