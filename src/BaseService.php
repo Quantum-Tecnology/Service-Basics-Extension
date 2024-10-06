@@ -139,7 +139,7 @@ class BaseService
 
     public function update(int $id): Model
     {
-        $data  = !$this->existsData ? request()->data : $this->data;
+        $data  = !$this->existsData ? request()->data() : $this->data;
         $model = $this->show($id);
 
         $transaction = DB::transaction(function () use ($data, $model) {
