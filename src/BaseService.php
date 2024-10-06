@@ -119,7 +119,7 @@ class BaseService
 
     public function store(): Model
     {
-        $data = !$this->existsData ? request()->data : $this->data;
+        $data = !$this->existsData ? request()->data() : $this->data;
 
         $transaction = DB::transaction(function () use ($data) {
             $callback = $this->defaultModel->create($data->toArray());
