@@ -4,6 +4,7 @@ namespace GustavoSantarosa\ServiceBasicsExtension;
 
 use GustavoSantarosa\HandlerBasicsExtension\Traits\ApiResponseTrait;
 use GustavoSantarosa\PerPageTrait\PerPageTrait;
+use GustavoSantarosa\ServiceBasicsExtension\Traits\FilterInclude;
 use GustavoSantarosa\ValidateTrait\AutoDataTrait;
 use GustavoSantarosa\ValidateTrait\ValidateTrait;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
@@ -19,6 +20,7 @@ class BaseService
     use PerPageTrait;
     use ApiResponseTrait;
     use AutoDataTrait;
+    use FilterInclude;
 
     protected bool $paginationEnabled = true;
     protected bool $softDeleteEnabled = true;
@@ -59,11 +61,9 @@ class BaseService
 
     public function index(): LengthAwarePaginator|Collection
     {
-        $query = $this->defaultQuery();
+        $this->include();
 
-        if (request()->include) {
-            $query->with(explode(',', request()->include));
-        }
+        $query = $this->defaultQuery();
 
         if (
             isset(request()->filter['trashed'])
@@ -108,11 +108,9 @@ class BaseService
 
     public function show(int $id): Model
     {
-        $query = $this->defaultQuery();
+        $this->include();
 
-        if (request()->include) {
-            $query->with(explode(',', request()->include));
-        }
+        $query = $this->defaultQuery();
 
         return $query->findOrfail($id);
     }
