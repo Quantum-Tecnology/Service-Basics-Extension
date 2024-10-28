@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
-class BaseService
+abstract class BaseService
 {
     use ValidateTrait;
     use PerPageTrait;
@@ -103,16 +103,34 @@ class BaseService
             $query->orderby(request()->sortby ?? 'id', request()->sort ?? 'asc');
         }
 
-        return $this->result($query);
+        $indexed = $this->result($query);
+
+        $indexed->transform(function ($item) {
+            foreach ($item->getRelations() as $index => $relation) {
+                if (is_null($relation)) {
+                    $item->$index();
+                }
+            }
+
+            return $item;
+        });
+
+        return $indexed;
     }
 
     public function show(int $id): Model
     {
         $this->include();
 
-        $query = $this->defaultQuery();
+        $showed = $this->defaultQuery()->findOrfail($id);
 
-        return $query->findOrfail($id);
+        foreach ($showed->getRelations() as $index => $relation) {
+            if (is_null($relation)) {
+                $showed->$index();
+            }
+        }
+
+        return $showed;
     }
 
     public function store(): Model
@@ -230,7 +248,9 @@ class BaseService
 
     public function setCustomQuery(Builder $customQuery): void
     {
-        $this->customQuery = $customQuery;
+        if (is_null($this->customQuery)) {
+            $this->customQuery = $customQuery;
+        }
     }
 
     public function setData(array|object $data): self
