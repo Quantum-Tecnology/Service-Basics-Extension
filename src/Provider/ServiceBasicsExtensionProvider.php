@@ -13,6 +13,7 @@ class ServiceBasicsExtensionProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->alias('service', \GustavoSantarosa\ServiceBasicsExtension\Middleware\ServiceMiddleware::class);
     }
 
     /**
