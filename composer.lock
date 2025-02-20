@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "faf77f424ab7b88dc71b4071f5f994e8",
+    "content-hash": "388083f3e123a6d2bf35ff0508130a41",
     "packages": [
         {
             "name": "brick/math",
@@ -694,6 +694,109 @@
                 "source": "https://github.com/GustavoSantarosa/Handler-Basics-Extension/tree/1.8.9"
             },
             "time": "2024-07-11T16:56:22+00:00"
+        },
+        {
+            "name": "gustavosantarosa/model-basics-extension",
+            "version": "2.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/GustavoSantarosa/Model-Basics-Extension.git",
+                "reference": "1a0e37b98e1bc1af00f1847814b7f332df8684ae"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/GustavoSantarosa/Model-Basics-Extension/zipball/1a0e37b98e1bc1af00f1847814b7f332df8684ae",
+                "reference": "1a0e37b98e1bc1af00f1847814b7f332df8684ae",
+                "shasum": ""
+            },
+            "require": {
+                "gustavosantarosa/setschema-trait-postgresql": "^1.1",
+                "laravel/framework": "^10.0 | ^11.0",
+                "php": "^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "GustavoSantarosa\\ModelBasicsExtension\\Provider\\ModelBasicsExtensionProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "GustavoSantarosa\\ModelBasicsExtension\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Luis Gustavo Santarosa",
+                    "email": "gustavo-computacao@hotmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Model Basics Extension",
+            "homepage": "http://www.gustavosantarosa.esy.es/",
+            "support": {
+                "email": "gustavo-computacao@hotmail.com",
+                "issues": "https://github.com/GustavoSantarosa/Model-Basics-Extension/issues",
+                "source": "https://github.com/GustavoSantarosa/Model-Basics-Extension/tree/2.0.2"
+            },
+            "time": "2025-02-20T16:56:26+00:00"
+        },
+        {
+            "name": "gustavosantarosa/setschema-trait-postgresql",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/GustavoSantarosa/SetSchema-Trait-Postgresql.git",
+                "reference": "351005b0e8a5740830f656c1eeda5220eabb5fdc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/GustavoSantarosa/SetSchema-Trait-Postgresql/zipball/351005b0e8a5740830f656c1eeda5220eabb5fdc",
+                "reference": "351005b0e8a5740830f656c1eeda5220eabb5fdc",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^v10|^v11",
+                "php": "^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "GustavoSantarosa\\SetSchemaTrait\\Provider\\SetSchemaTraitProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "GustavoSantarosa\\SetSchemaTrait\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Luis Gustavo Santarosa",
+                    "email": "gustavo-computacao@hotmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "SetSchema Trait Postgresql for Laravel",
+            "homepage": "http://www.gustavosantarosa.esy.es/",
+            "support": {
+                "email": "gustavo-computacao@hotmail.com",
+                "issues": "https://github.com/GustavoSantarosa/SetSchema-Trait-Postgresql/issues",
+                "source": "https://github.com/GustavoSantarosa/SetSchema-Trait-Postgresql/tree/1.1.0"
+            },
+            "time": "2024-03-21T01:12:50+00:00"
         },
         {
             "name": "gustavosantarosa/validate-trait",
