@@ -103,7 +103,7 @@ abstract class BaseService
             $table = $this->defaultModel->getTable();
             $tableAndColumn = $table . "." . $this->defaultModel->getKeyName();
             
-            $query->orderby(request()->sortby ?? $$tableAndColumn, request()->sort ?? 'asc');
+            $query->orderby(request()->sortby ?? $tableAndColumn, request()->sort ?? 'asc');
         }
 
         $indexed = $this->result($query);
