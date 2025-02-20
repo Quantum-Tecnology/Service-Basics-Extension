@@ -100,7 +100,10 @@ abstract class BaseService
         if ('random' === request()->sortby) {
             $query->inRandomOrder();
         } else {
-            $query->orderby(request()->sortby ?? $this->defaultModel->getKeyName(), request()->sort ?? 'asc');
+            $table = $this->defaultModel->getTable();
+            $tableAndColumn = $table . "." . $this->defaultModel->getKeyName();
+            
+            $query->orderby(request()->sortby ?? $$tableAndColumn, request()->sort ?? 'asc');
         }
 
         $indexed = $this->result($query);
