@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "792530facfd75d858a7080ff9b4288a0",
+    "content-hash": "faf77f424ab7b88dc71b4071f5f994e8",
     "packages": [
         {
             "name": "brick/math",
@@ -694,58 +694,6 @@
                 "source": "https://github.com/GustavoSantarosa/Handler-Basics-Extension/tree/1.8.9"
             },
             "time": "2024-07-11T16:56:22+00:00"
-        },
-        {
-            "name": "gustavosantarosa/perpage-trait",
-            "version": "2.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/GustavoSantarosa/PerPage-Trait.git",
-                "reference": "7148b15ff9604ec582c30c8578c2374d3da619a6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/GustavoSantarosa/PerPage-Trait/zipball/7148b15ff9604ec582c30c8578c2374d3da619a6",
-                "reference": "7148b15ff9604ec582c30c8578c2374d3da619a6",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": "^v10|^v11",
-                "php": "^8.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "QuantumCode\\PerPageTrait\\Provider\\PerPageTraitProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "QuantumCode\\PerPageTrait\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Luis Gustavo Santarosa",
-                    "email": "gustavo-computacao@hotmail.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "ValidateTrait for Laravel",
-            "homepage": "http://www.gustavosantarosa.esy.es/",
-            "support": {
-                "email": "gustavo-computacao@hotmail.com",
-                "issues": "https://github.com/GustavoSantarosa/PerPage-Trait/issues",
-                "source": "https://github.com/GustavoSantarosa/PerPage-Trait/tree/2.0.0"
-            },
-            "abandoned": "quantumcode/perpage-trait",
-            "time": "2025-02-19T01:10:45+00:00"
         },
         {
             "name": "gustavosantarosa/validate-trait",
@@ -3163,6 +3111,57 @@
                 "source": "https://github.com/php-fig/simple-cache/tree/3.0.0"
             },
             "time": "2021-10-29T13:26:27+00:00"
+        },
+        {
+            "name": "quantumcode/perpage-trait",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/GustavoSantarosa/PerPage-Trait.git",
+                "reference": "7148b15ff9604ec582c30c8578c2374d3da619a6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/GustavoSantarosa/PerPage-Trait/zipball/7148b15ff9604ec582c30c8578c2374d3da619a6",
+                "reference": "7148b15ff9604ec582c30c8578c2374d3da619a6",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^v10|^v11",
+                "php": "^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "QuantumCode\\PerPageTrait\\Provider\\PerPageTraitProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "QuantumCode\\PerPageTrait\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Luis Gustavo Santarosa",
+                    "email": "gustavo-computacao@hotmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "ValidateTrait for Laravel",
+            "homepage": "http://www.gustavosantarosa.esy.es/",
+            "support": {
+                "email": "gustavo-computacao@hotmail.com",
+                "issues": "https://github.com/GustavoSantarosa/PerPage-Trait/issues",
+                "source": "https://github.com/GustavoSantarosa/PerPage-Trait/tree/2.0.0"
+            },
+            "time": "2025-02-19T01:10:45+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
