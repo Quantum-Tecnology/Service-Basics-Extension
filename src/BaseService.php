@@ -2,17 +2,17 @@
 
 namespace GustavoSantarosa\ServiceBasicsExtension;
 
-use GustavoSantarosa\HandlerBasicsExtension\Traits\ApiResponseTrait;
-use GustavoSantarosa\PerPageTrait\PerPageTrait;
-use GustavoSantarosa\ServiceBasicsExtension\Traits\FilterInclude;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+use QuantumCode\PerPageTrait\PerPageTrait;
+use Illuminate\Database\Eloquent\Collection;
 use GustavoSantarosa\ValidateTrait\AutoDataTrait;
 use GustavoSantarosa\ValidateTrait\ValidateTrait;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
+use GustavoSantarosa\ServiceBasicsExtension\Traits\FilterInclude;
+use GustavoSantarosa\HandlerBasicsExtension\Traits\ApiResponseTrait;
 
 abstract class BaseService
 {

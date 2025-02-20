@@ -6,7 +6,9 @@
   "require": {
     "php": "^8.0",
     "laravel/framework": "^10.0 | ^11.0",
-    "gustavosantarosa/model-basics-extension": "^2.0"
+    "gustavosantarosa/validate-trait": "^1.2.4",
+    "gustavosantarosa/perpage-trait": "^2.0",
+    "gustavosantarosa/handler-basics-extension": "^1.8"
   },
   "autoload": {
     "psr-4": {
