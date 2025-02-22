@@ -1,6 +1,6 @@
 <?php
 
-namespace GustavoSantarosa\ServiceBasicsExtension\Middleware;
+namespace QuantumTecnology\ServiceBasicsExtension\Middleware;
 
 use Illuminate\Http\Request;
 

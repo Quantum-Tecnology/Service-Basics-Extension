@@ -1,6 +1,6 @@
 <?php
 
-namespace GustavoSantarosa\ServiceBasicsExtension\Provider;
+namespace QuantumTecnology\ServiceBasicsExtension\Provider;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -13,7 +13,7 @@ class ServiceBasicsExtensionProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->alias('service', \GustavoSantarosa\ServiceBasicsExtension\Middleware\ServiceMiddleware::class);
+        $this->app->alias('service', \QuantumTecnology\ServiceBasicsExtension\Middleware\ServiceMiddleware::class);
     }
 
     /**

@@ -1,18 +1,18 @@
 <?php
 
-namespace GustavoSantarosa\ServiceBasicsExtension;
+namespace QuantumTecnology\ServiceBasicsExtension;
 
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
-use QuantumCode\PerPageTrait\PerPageTrait;
+use QuantumTecnology\PerPageTrait\PerPageTrait;
 use Illuminate\Database\Eloquent\Collection;
-use GustavoSantarosa\ValidateTrait\AutoDataTrait;
-use GustavoSantarosa\ValidateTrait\ValidateTrait;
+use QuantumTecnology\ValidateTrait\AutoDataTrait;
+use QuantumTecnology\ValidateTrait\ValidateTrait;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use GustavoSantarosa\ServiceBasicsExtension\Traits\FilterInclude;
-use GustavoSantarosa\HandlerBasicsExtension\Traits\ApiResponseTrait;
+use QuantumTecnology\ServiceBasicsExtension\Traits\FilterInclude;
+use QuantumTecnology\HandlerBasicsExtension\Traits\ApiResponseTrait;
 
 abstract class BaseService
 {

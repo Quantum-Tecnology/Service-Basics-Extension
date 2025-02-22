@@ -1,6 +1,6 @@
 <?php
 
-namespace GustavoSantarosa\ServiceBasicsExtension\Traits;
+namespace QuantumTecnology\ServiceBasicsExtension\Traits;
 
 trait FilterInclude
 {

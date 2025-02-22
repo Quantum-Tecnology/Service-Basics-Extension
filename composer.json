@@ -1,19 +1,19 @@
 {
-  "name": "gustavosantarosa/service-basics-extension",
+  "name": "quantumtecnology/service-basics-extension",
   "license": "MIT",
   "homepage": "http://www.gustavosantarosa.esy.es/",
   "description": "Service Basics Extension",
   "require": {
     "php": "^8.0",
     "laravel/framework": "^10.0 | ^11.0",
-    "gustavosantarosa/validate-trait": "^1.2.4",
-    "gustavosantarosa/handler-basics-extension": "^1.8",
-    "quantumcode/perpage-trait": "^2.0",
-    "gustavosantarosa/model-basics-extension": "^2.0"
+    "quantumtecnology/validate-trait": "^2.0",
+    "quantumtecnology/perpage-trait": "^2.0",
+    "quantumtecnology/model-basics-extension": "^2.0",
+    "quantumtecnology/handler-basics-extension": "^2.0"
   },
   "autoload": {
     "psr-4": {
-      "GustavoSantarosa\\ServiceBasicsExtension\\": "src/"
+      "QuantumTecnology\\ServiceBasicsExtension\\": "src/"
     }
   },
   "authors": [
@@ -30,7 +30,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "GustavoSantarosa\\ServiceBasicsExtension\\Provider\\ServiceBasicsExtensionProvider"
+        "QuantumTecnology\\ServiceBasicsExtension\\Provider\\ServiceBasicsExtensionProvider"
       ]
     }
   },
