@@ -24,10 +24,10 @@ abstract class BaseService
     use FilterInclude;
 
     protected bool $paginationEnabled = true;
-    protected mixed $data = null;
-    protected bool $existsData = false;
-    protected bool $sync = false;
-    protected bool $qaTest = false;
+    protected mixed $data             = null;
+    protected bool $existsData        = false;
+    protected bool $sync              = false;
+    protected bool $qaTest            = false;
     protected $authUser;
 
     protected $model;
