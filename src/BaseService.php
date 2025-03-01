@@ -68,7 +68,7 @@ abstract class BaseService
         ?string $trashed = null,
     ): LengthAwarePaginator|Collection {
 
-        $this->include($search ?: '');
+        $this->include($include ?: '');
 
         $query = $this->defaultQuery();
 
