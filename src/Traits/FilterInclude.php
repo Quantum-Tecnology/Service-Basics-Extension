@@ -4,13 +4,17 @@ namespace QuantumTecnology\ServiceBasicsExtension\Traits;
 
 trait FilterInclude
 {
+    protected array $dataIncludes = [];
+
     private $includeCallable;
 
-    private function include(): void
+    private function include(string $includes): void
     {
-        if (!request()->include) {
+        if (blank($includes)) {
             return;
         }
+
+        $this->dataIncludes = $includes;
 
         if (!is_callable($this->includeCallable)) {
             $this->setInclude();
@@ -33,7 +37,7 @@ trait FilterInclude
         }
 
         $this->includeCallable = function ($query) {
-            collect(explode(',', request()->include))
+            collect(explode(',', $this->dataIncludes))
                 ->each(function ($relation) use ($query) {
                     $relation = collect(explode(';', $relation))
                         ->transform(function ($collum) use ($query) {

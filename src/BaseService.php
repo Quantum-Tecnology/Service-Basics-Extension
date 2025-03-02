@@ -2,6 +2,7 @@
 
 namespace QuantumTecnology\ServiceBasicsExtension;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
@@ -23,7 +24,6 @@ abstract class BaseService
     use FilterInclude;
 
     protected bool $paginationEnabled = true;
-    protected bool $softDeleteEnabled = true;
     protected mixed $data             = null;
     protected bool $existsData        = false;
     protected bool $sync              = false;
@@ -59,23 +59,32 @@ abstract class BaseService
         }
     }
 
-    public function index(): LengthAwarePaginator|Collection
-    {
-        $this->include();
+    public function index(
+        ?string $search = null,
+        ?array $filters = [],
+        ?string $sortby = null,
+        ?string $sortdir = null,
+        ?string $include = null,
+        ?string $trashed = null,
+    ): LengthAwarePaginator|Collection {
+
+        $this->include($include ?: '');
 
         $query = $this->defaultQuery();
 
-        if (
-            isset(request()->filter['trashed'])
-            && 'only' === request()->filter['trashed']
-            && true === $this->softDeleteEnabled
-        ) {
+        $table = $this->defaultModel->getTable();
+        $tableAndColumn = $table.".".$this->defaultModel->getKeyName();
+
+        $sortby = $sortby ?: $tableAndColumn;
+        $existSoftDelete = in_array(SoftDeletes::class, class_uses($this->defaultModel));
+
+        if ($existSoftDelete && $trashed === 'only') {
             $query->onlyTrashed();
         }
 
-        if (!empty(request()->search) && (count($this->searchableColumns) > 0 || count($this->searchableRelations) > 0)) {
+        if (!empty($search) && (count($this->searchableColumns) > 0 || count($this->searchableRelations) > 0)) {
             $query->where(function ($subQuery) {
-                $searchString = str_replace(' ', '%', trim(request()->search));
+                $searchString = str_replace(' ', '%', trim($search));
 
                 $subQuery->where(function ($query) use ($searchString) {
                     foreach ($this->searchableColumns as $column) {
@@ -93,17 +102,27 @@ abstract class BaseService
                     });
                 }
             });
-        } elseif (!empty(request()->search) && 0 === count($this->searchableColumns) && 0 === count($this->searchableRelations)) {
+        } elseif (!empty($search) && 0 === count($this->searchableColumns) && 0 === count($this->searchableRelations)) {
             $this->unprocessableEntityException('Parameter search not enabled this route.');
         }
 
-        if ('random' === request()->sortby) {
+        foreach ($filters as $key => $value) {
+            $nameFilter = str("by_{$key}")->camel()->toString();
+            $nameScoped = str("scope_by_{$key}")->camel()->toString();
+            $dataFilter = collect(explode('|', $filter ?? ''))
+                ->filter(fn($item) => filled($item))
+                ->toArray();
+
+            $query->$nameFilter(array_values($dataFilter));
+        }
+
+        if ('random' === $sortby) {
             $query->inRandomOrder();
         } else {
             $table = $this->defaultModel->getTable();
-            $tableAndColumn = $table . "." . $this->defaultModel->getKeyName();
-            
-            $query->orderby(request()->sortby ?? $tableAndColumn, request()->sort ?? 'asc');
+            $tableAndColumn = $table.".".$this->defaultModel->getKeyName();
+
+            $query->orderby($sortby, $sortdir ?: 'asc');
         }
 
         $indexed = $this->result($query);
@@ -158,7 +177,7 @@ abstract class BaseService
 
     public function update(int $id): Model
     {
-        $data  = !$this->existsData ? request()->data() : $this->data;
+        $data = !$this->existsData ? request()->data() : $this->data;
         $model = $this->show($id);
 
         $transaction = DB::transaction(function () use ($data, $model) {
@@ -259,7 +278,7 @@ abstract class BaseService
     public function setData(array|object $data): self
     {
         $this->existsData = true;
-        $this->data       = $data;
+        $this->data = $data;
 
         return $this;
     }
@@ -327,9 +346,7 @@ abstract class BaseService
      *
      * @return void
      */
-    protected static function booting()
-    {
-    }
+    protected static function booting() {}
 
     /**
      * Bootstrap the model and its traits.
@@ -346,9 +363,7 @@ abstract class BaseService
      *
      * @return void
      */
-    protected static function booted()
-    {
-    }
+    protected static function booted() {}
 
     /**
      * Boot all of the bootable traits on the model.
@@ -376,7 +391,7 @@ abstract class BaseService
                 static::$traitInitializers[$class][] = $method;
 
                 static::$traitInitializers[$class] = array_unique(
-                    static::$traitInitializers[$class]
+                    static::$traitInitializers[$class],
                 );
             }
         }
