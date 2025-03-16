@@ -2,9 +2,9 @@
 
 namespace QuantumTecnology\ServiceBasicsExtension\Traits;
 
-trait FilterInclude
+trait FilterIncludeTrait
 {
-    protected array $dataIncludes = [];
+    protected array|string $dataIncludes = [];
 
     private $includeCallable;
 
