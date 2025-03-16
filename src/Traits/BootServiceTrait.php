@@ -22,6 +22,7 @@ trait BootServiceTrait
      * Query applied to specified request.
      */
     private ?Builder $customQuery = null;
+    private ?Builder $query = null;
 
     protected array $searchableColumns = [];
 
@@ -167,11 +168,11 @@ trait BootServiceTrait
     /**
      * Default query.
      */
-    protected function defaultQuery(): Builder
+    protected function defaultQuery(): self
     {
-        $query = $this->customQuery ?? $this->defaultModel::query();
+        $this->query = $this->query ?? $this->getModel()::query();
 
-        return $query;
+        return $this;
     }
 
     public function setCustomQuery(Builder $customQuery): void
