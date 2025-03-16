@@ -12,6 +12,8 @@
   - Ideia inicial @bhcosta90
 - Criado a trait de Search para poder organizar melhor as logicas dele @GustavoSantarosa
 - Criado a trait de Sort para poder organizar melhor as logicas dele @GustavoSantarosa
+- Criado a Trash de Sort para poder organizar melhor as logicas dele @GustavoSantarosa
+- Ajustado o index e o show com as novas traits @GustavoSantarosa
 
 # EN
 
@@ -23,3 +25,5 @@
   - Initial idea @bhcosta90
 - Created the Search trait to better organize its logic @GustavoSantarosa
 - Created the Sort trait to better organize its logic @GustavoSantarosa
+- Created the Trash trait to better organize its logic @GustavoSantarosa
+- Adjusted the index and show with the new traits @GustavoSantarosa
