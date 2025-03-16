@@ -6,9 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 trait ShowServiceTrait
 {
+    use FilterIncludeTrait;
+    
+    protected bool $runningInConsole = false;
+
     public function show(int $id): Model
     {
-        $this->include();
+        $this->addIncludeFilter();
 
         $showed = $this->defaultQuery()->findOrfail($id);
 

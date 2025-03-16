@@ -4,40 +4,29 @@ namespace QuantumTecnology\ServiceBasicsExtension\Traits;
 
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
+use QuantumTecnology\PerPageTrait\PerPageTrait;
 
 trait IndexServiceTrait
 {
     use FilterSearchTrait;
     use FilterSortTrait;
     use FilterTrashTrait;
+    use FilterIncludeTrait;
+    use FilterScopesTrait;
+    use PerPageTrait;
 
-    public function index(
-        ?string $search = null,
-        ?array $filters = [],
-        ?string $sortby = null,
-        string $sort = 'asc',
-        string $includes = '',
-        ?string $trashed = null,
-    ): LengthAwarePaginator|Collection {
-        $this->include($includes);
+    protected bool $runningInConsole = false;
 
+    public function index(): LengthAwarePaginator|Collection
+    {
         $this->defaultQuery();
+        $this->addIncludeFilter();
+        $this->addTrashFilter();
+        $this->addSearchFilter();
+        $this->addSortFilter();
+        $this->addScopesFilter();
 
-        $this->addTrashFilter($trashed);
-        $this->addSearchFilter($search);
-        $this->addSortFilter($sortby, $sort);
-
-        foreach ($filters as $key => $value) {
-            $nameFilter = str("by_{$key}")->camel()->toString();
-            $nameScoped = str("scope_by_{$key}")->camel()->toString();
-            $dataFilter = collect(explode('|', $filter ?? ''))
-                ->filter(fn ($item) => filled($item))
-                ->toArray();
-
-            $this->query->$nameFilter(array_values($dataFilter));
-        }
-
-        $indexed = $this->result($this->query);
+        $indexed = $this->result();
 
         $indexed->transform(function ($item) {
             foreach ($item->getRelations() as $index => $relation) {

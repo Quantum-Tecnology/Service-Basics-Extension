@@ -3114,16 +3114,16 @@
         },
         {
             "name": "quantumtecnology/perpage-trait",
-            "version": "2.0.3",
+            "version": "2.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Quantum-Tecnology/PerPage-Trait.git",
-                "reference": "0e3c84dfd382a5a3745a47972a7fd87aea4c649c"
+                "reference": "fe9172c7105c7e331798ba60e67028fad82d6125"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Quantum-Tecnology/PerPage-Trait/zipball/0e3c84dfd382a5a3745a47972a7fd87aea4c649c",
-                "reference": "0e3c84dfd382a5a3745a47972a7fd87aea4c649c",
+                "url": "https://api.github.com/repos/Quantum-Tecnology/PerPage-Trait/zipball/fe9172c7105c7e331798ba60e67028fad82d6125",
+                "reference": "fe9172c7105c7e331798ba60e67028fad82d6125",
                 "shasum": ""
             },
             "require": {
@@ -3159,9 +3159,9 @@
             "support": {
                 "email": "gustavo-computacao@hotmail.com",
                 "issues": "https://github.com/Quantum-Tecnology/PerPage-Trait/issues",
-                "source": "https://github.com/Quantum-Tecnology/PerPage-Trait/tree/2.0.3"
+                "source": "https://github.com/Quantum-Tecnology/PerPage-Trait/tree/2.0.4"
             },
-            "time": "2025-02-25T00:19:12+00:00"
+            "time": "2025-03-16T23:07:46+00:00"
         },
         {
             "name": "quantumtecnology/setschema-trait-postgresql",

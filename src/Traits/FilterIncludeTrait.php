@@ -8,7 +8,7 @@ trait FilterIncludeTrait
 
     private $includeCallable;
 
-    private function include(string $includes): void
+    private function addIncludeFilter(?string $includes = ''): void
     {
         if (blank($includes)) {
             return;
