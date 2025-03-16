@@ -11,6 +11,9 @@
     "quantumtecnology/model-basics-extension": "^2.0",
     "quantumtecnology/handler-basics-extension": "^2.0"
   },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^3.64"
+  },
   "autoload": {
     "psr-4": {
       "QuantumTecnology\\ServiceBasicsExtension\\": "src/"
