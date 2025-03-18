@@ -18,19 +18,29 @@ trait FilterTrashTrait
         }
 
         if (!$this->runningInConsole) {
-            $this->setTrashed(request('filter', false)['trashed'] ?? $this->getTrashed());
+            $this->setTrashed(request('trash', $this->getTrashed()));
+        }
+
+        if (blank($this->getTrashed())) {
+            return;
         }
 
         abort_if(
             $this->isTrashable(),
             Response::HTTP_UNPROCESSABLE_ENTITY,
-            __('Parameter trashed not enabled this route.'),
+            __('Parameter trash not enabled this route.'),
         );
 
         match ($this->getTrashed()) {
             'with'  => $this->defaultQuery()->withTrashed(),
             'only'  => $this->defaultQuery()->onlyTrashed(),
-            default => $this->defaultQuery(),
+            default => abort(
+                Response::HTTP_UNPROCESSABLE_ENTITY,
+                __(sprintf(
+                    'Parameter %s is not valid for trash. Valid parameters are: "with", "only".',
+                    $this->getTrashed()
+                ))
+            ),
         };
     }
 
