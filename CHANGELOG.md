@@ -1,5 +1,17 @@
 # CHANGE LOG
 
+## V2.1.1 (18/03/2025)
+
+# PT-BR
+
+- Corrigido um problema que estava ocorrendo na nova trait de filterInclude @GustavoSantarosa
+
+
+# EN
+
+- Fixed an issue that was occurring in the new filterInclude trait @GustavoSantarosa
+
+
 ## V2.1.0 (16/03/2025)
 
 # PT-BR
