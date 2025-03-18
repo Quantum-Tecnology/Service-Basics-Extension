@@ -10,11 +10,9 @@ trait FilterIncludeTrait
 
     private function addIncludeFilter(?string $includes = ''): void
     {
-        if (blank($includes)) {
+        if (blank($this->dataIncludes = request('includes', $includes))) {
             return;
         }
-
-        $this->dataIncludes = $includes;
 
         if (!is_callable($this->includeCallable)) {
             $this->setInclude();
