@@ -1,5 +1,16 @@
 # CHANGE LOG
 
+## V2.2.0 (22/03/2025)
+
+# PT-BR
+
+- Criado a model de archives e sua trait de relacionamento para models @GustavoSantarosa
+
+
+# EN
+
+- Created the archives model and its relationship trait for models @GustavoSantarosa
+
 ## V2.1.1 (18/03/2025)
 
 # PT-BR
