@@ -4,25 +4,30 @@ namespace QuantumTecnology\ServiceBasicsExtension\Traits;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 trait StoreServiceTrait
 {
+    use FilesTrait;
+
     public function store(): Model
     {
-        $data = !$this->existsData ? request()->data() : $this->data;
+        $this->setData($this->existsData ? $this->data : data());
+        $model = $this->getModel();
+        $model->fill($this->data->toArray());
+        $this->setModel($model);
 
-        $transaction = DB::transaction(function () use ($data) {
-            $callback = $this->defaultModel->create($data->toArray());
-
-            foreach ($data as $indice => $value) {
+        $transaction = DB::transaction(function () {
+            collect($this->data)->each(function ($value, $indice) {
                 if (is_array($value)) {
-                    $indice = Str::Camel($indice);
-                    $callback->$indice()->sync($value);
+                    $this->getModel()->$indice()->sync($value, $this->sync);
                 }
-            }
+            });
 
-            return $callback->refresh();
+            $this->getModel()->save();
+
+            $this->createFiles();
+
+            return $this->getModel()->refresh();
         });
 
         return $transaction;

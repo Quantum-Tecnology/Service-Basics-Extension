@@ -1,16 +1,40 @@
 # CHANGE LOG
 
+## V2.2.1 (30/03/2025)
+
+# PT-BR
+
+- Corrigido um problema no filetrait e limpado alguns codigos mortos. @GustavoSantarosa
+
+# EN
+
+- Fixed an issue in the filetrait and cleaned up some dead code. @GustavoSantarosa
+
+## V2.2.0 (22/03/2025)
+
+# PT-BR
+
+- Criado a model de archives e sua trait de relacionamento para models @GustavoSantarosa
+- Criado a trait para salvar arquivos na tabela archives @GustavoSantarosa
+- Ajustado o store e update para se adequar as novas traits e automatizado o file @GustavoSantarosa
+- Atualizado a vendor @GustavoSantarosa
+
+# EN
+
+- Created the archives model and its relationship trait for models @GustavoSantarosa
+- Created the trait to save files in the archives table @GustavoSantarosa
+- Adjusted the store and update to fit the new traits and automated the file @GustavoSantarosa
+- Updated the vendor @GustavoSantarosa
+
 ## V2.1.1 (18/03/2025)
 
 # PT-BR
 
 - Corrigido um problema que estava ocorrendo na nova trait de filterInclude @GustavoSantarosa
 
-
 # EN
 
 - Fixed an issue that was occurring in the new filterInclude trait @GustavoSantarosa
-
 
 ## V2.1.0 (16/03/2025)
 

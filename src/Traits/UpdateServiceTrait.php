@@ -7,21 +7,29 @@ use Illuminate\Support\Facades\DB;
 
 trait UpdateServiceTrait
 {
+    use FilesTrait;
+
     public function update(int $id): Model
     {
-        $data  = !$this->existsData ? request()->data() : $this->data;
-        $model = $this->show($id);
+        $this->setData($this->existsData ? $this->data : data());
+        $model = $this->getModel()->findOrfail($id);
+        $model->fill($this->data->toArray());
+        $this->setModel($model);
 
-        $transaction = DB::transaction(function () use ($data, $model) {
-            $model->update($data->toArray());
-
-            foreach ($data as $indice => $value) {
+        $transaction = DB::transaction(function () {
+            collect($this->data)->each(function ($value, $indice) {
                 if (is_array($value)) {
-                    $model->$indice()->sync($value, $this->sync);
+                    $this->getModel()->$indice()->sync($value, $this->sync);
                 }
-            }
+            });
 
-            return $model->refresh();
+            $this->getModel()->save();
+
+            $this->destroyFiles();
+            $this->updateFiles();
+            $this->createFiles();
+
+            return $this->getModel()->refresh();
         });
 
         return $transaction;
