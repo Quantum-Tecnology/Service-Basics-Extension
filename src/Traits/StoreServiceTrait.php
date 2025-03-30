@@ -16,8 +16,6 @@ trait StoreServiceTrait
         $model->fill($this->data->toArray());
         $this->setModel($model);
 
-        $data = !$this->existsData ? request()->data() : $this->data;
-
         $transaction = DB::transaction(function () {
             collect($this->data)->each(function ($value, $indice) {
                 if (is_array($value)) {

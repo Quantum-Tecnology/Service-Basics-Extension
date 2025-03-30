@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Storage;
 
 trait FilesTrait
 {
-    protected Collection $files;
+    protected Collection|array $files = [];
 
     protected function checkFile(
         string $nameInData = 'files',
@@ -88,7 +88,7 @@ trait FilesTrait
 
     protected function createFiles(): void
     {
-        $this->files->each(function ($file) {
+        collect($this->files)->each(function ($file) {
             $key = sprintf(
                 '%s/%s/%s/%s/%s_%s',
                 config('app.env'),
