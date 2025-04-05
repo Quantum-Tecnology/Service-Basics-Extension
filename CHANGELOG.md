@@ -1,5 +1,17 @@
 # CHANGE LOG
 
+## V2.2.2 (05/04/2025)
+
+# PT-BR
+
+- Corrigido um problema em filter trait. @GustavoSantarosa
+- Corrigido um problema em bootService trait. @GustavoSantarosa
+
+# EN
+
+- Fixed an issue in the filter trait. @GustavoSantarosa
+- Fixed an issue in the bootService trait. @GustavoSantarosa
+
 ## V2.2.1 (30/03/2025)
 
 # PT-BR
