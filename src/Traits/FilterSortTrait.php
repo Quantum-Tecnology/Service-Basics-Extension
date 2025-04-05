@@ -29,7 +29,9 @@ trait FilterSortTrait
 
     public function getSortBy(): ?string
     {
-        return $this->sortBy ?? $this->getModel()->getTable().'.'.$this->getModel()->getKeyName();
+        $model = $this->defaultQuery()->getModel();
+
+        return $this->sortBy ?? $model->getTable().'.'.$model->getKeyName();
     }
 
     public function setSortBy(?string $sortBy): self
