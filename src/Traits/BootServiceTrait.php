@@ -21,8 +21,7 @@ trait BootServiceTrait
     /**
      * Query applied to specified request.
      */
-    private ?Builder $customQuery = null;
-    private ?Builder $query       = null;
+    private ?Builder $query = null;
 
     protected array $searchableColumns = [];
 
@@ -177,8 +176,8 @@ trait BootServiceTrait
 
     public function setCustomQuery(Builder $customQuery): void
     {
-        if (is_null($this->customQuery)) {
-            $this->customQuery = $customQuery;
+        if (is_null($this->query)) {
+            $this->query = $customQuery;
         }
     }
 
