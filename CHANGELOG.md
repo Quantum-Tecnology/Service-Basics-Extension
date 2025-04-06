@@ -1,5 +1,15 @@
 # CHANGE LOG
 
+## V2.3.0 (06/04/2025)
+
+# PT-BR
+
+- Implementado o retorno por Data. @GustavoSantarosa
+
+# EN
+
+- Implemented return by Date. @GustavoSantarosa
+
 ## V2.2.2 (05/04/2025)
 
 # PT-BR

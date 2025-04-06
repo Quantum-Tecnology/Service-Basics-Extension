@@ -3010,17 +3010,68 @@
             "time": "2021-10-29T13:26:27+00:00"
         },
         {
-            "name": "quantumtecnology/handler-basics-extension",
-            "version": "2.0.6",
+            "name": "quantumtecnology/enum-basics-extension",
+            "version": "2.0.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Quantum-Tecnology/Handler-Basics-Extension.git",
-                "reference": "6b2dba279ad72a327ce317b5b3ca1067ebb1f77f"
+                "url": "https://github.com/Quantum-Tecnology/Enum-Basics-Extension.git",
+                "reference": "7c18d82f73a4cc383c75595f53dac0e5f00fa7cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Quantum-Tecnology/Handler-Basics-Extension/zipball/6b2dba279ad72a327ce317b5b3ca1067ebb1f77f",
-                "reference": "6b2dba279ad72a327ce317b5b3ca1067ebb1f77f",
+                "url": "https://api.github.com/repos/Quantum-Tecnology/Enum-Basics-Extension/zipball/7c18d82f73a4cc383c75595f53dac0e5f00fa7cf",
+                "reference": "7c18d82f73a4cc383c75595f53dac0e5f00fa7cf",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^v10|^v11|^v12",
+                "php": "^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "QuantumTecnology\\EnumBasicsExtension\\Provider\\EnumBasicsExtensionProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "QuantumTecnology\\EnumBasicsExtension\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Luis Gustavo Santarosa",
+                    "email": "gustavo-computacao@hotmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Enum Basics Extension",
+            "homepage": "http://www.gustavosantarosa.esy.es/",
+            "support": {
+                "email": "gustavo-computacao@hotmail.com",
+                "issues": "https://github.com/Quantum-Tecnology/Enum-Basics-Extension/issues",
+                "source": "https://github.com/Quantum-Tecnology/Enum-Basics-Extension/tree/2.0.2"
+            },
+            "time": "2025-04-06T15:34:54+00:00"
+        },
+        {
+            "name": "quantumtecnology/handler-basics-extension",
+            "version": "2.0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Quantum-Tecnology/Handler-Basics-Extension.git",
+                "reference": "a1c363ee13740f928b8a2639eb80f4505502d00e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Quantum-Tecnology/Handler-Basics-Extension/zipball/a1c363ee13740f928b8a2639eb80f4505502d00e",
+                "reference": "a1c363ee13740f928b8a2639eb80f4505502d00e",
                 "shasum": ""
             },
             "require": {
@@ -3057,9 +3108,9 @@
             "support": {
                 "email": "gustavo-computacao@hotmail.com",
                 "issues": "https://github.com/Quantum-Tecnology/Handler-Basics-Extension/issues",
-                "source": "https://github.com/Quantum-Tecnology/Handler-Basics-Extension/tree/2.0.6"
+                "source": "https://github.com/Quantum-Tecnology/Handler-Basics-Extension/tree/2.0.7"
             },
-            "time": "2025-04-05T22:40:52+00:00"
+            "time": "2025-04-06T15:50:17+00:00"
         },
         {
             "name": "quantumtecnology/model-basics-extension",
@@ -3114,21 +3165,27 @@
         },
         {
             "name": "quantumtecnology/perpage-trait",
-            "version": "2.0.4",
+            "version": "2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Quantum-Tecnology/PerPage-Trait.git",
-                "reference": "fe9172c7105c7e331798ba60e67028fad82d6125"
+                "reference": "b02e6904cfdd18dc223116aed67aea7ecdb4317c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Quantum-Tecnology/PerPage-Trait/zipball/fe9172c7105c7e331798ba60e67028fad82d6125",
-                "reference": "fe9172c7105c7e331798ba60e67028fad82d6125",
+                "url": "https://api.github.com/repos/Quantum-Tecnology/PerPage-Trait/zipball/b02e6904cfdd18dc223116aed67aea7ecdb4317c",
+                "reference": "b02e6904cfdd18dc223116aed67aea7ecdb4317c",
                 "shasum": ""
             },
             "require": {
+                "illuminate/contracts": "^10.0 || ^11.0 || ^12.0",
                 "illuminate/support": "^v10|^v11|^v12",
-                "php": "^8.0"
+                "php": "^8.0",
+                "quantumtecnology/enum-basics-extension": "^2.0",
+                "quantumtecnology/validate-trait": "^2.1"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.75"
             },
             "type": "library",
             "extra": {
@@ -3159,9 +3216,9 @@
             "support": {
                 "email": "gustavo-computacao@hotmail.com",
                 "issues": "https://github.com/Quantum-Tecnology/PerPage-Trait/issues",
-                "source": "https://github.com/Quantum-Tecnology/PerPage-Trait/tree/2.0.4"
+                "source": "https://github.com/Quantum-Tecnology/PerPage-Trait/tree/2.1.1"
             },
-            "time": "2025-03-16T23:07:46+00:00"
+            "time": "2025-04-06T15:37:01+00:00"
         },
         {
             "name": "quantumtecnology/validate-trait",

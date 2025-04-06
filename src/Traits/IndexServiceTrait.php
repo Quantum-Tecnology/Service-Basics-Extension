@@ -2,9 +2,8 @@
 
 namespace QuantumTecnology\ServiceBasicsExtension\Traits;
 
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Database\Eloquent\Collection;
 use QuantumTecnology\PerPageTrait\PerPageTrait;
+use QuantumTecnology\ValidateTrait\Data;
 
 trait IndexServiceTrait
 {
@@ -17,7 +16,7 @@ trait IndexServiceTrait
 
     protected bool $runningInConsole = false;
 
-    public function index(): LengthAwarePaginator|Collection
+    public function index(): Data
     {
         $this->defaultQuery();
         $this->addIncludeFilter();
@@ -28,7 +27,7 @@ trait IndexServiceTrait
 
         $indexed = $this->result();
 
-        $indexed->transform(function ($item) {
+        $indexed->data->transform(function ($item) {
             foreach ($item->getRelations() as $index => $relation) {
                 if (is_null($relation)) {
                     $item->$index();
