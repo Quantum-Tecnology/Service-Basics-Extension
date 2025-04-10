@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace QuantumTecnology\ServiceBasicsExtension\Traits;
 
 use Illuminate\Support\Facades\App;
@@ -12,7 +14,7 @@ trait FilterSortTrait
     public function addSortFilter(?string $sortBy = null, string $sort = 'asc'): self
     {
         if (!$this->runningInConsole) {
-            $this->setSortBy($sortBy ?? request('sort_by'));
+            $this->setSortBy($sortBy ?? request('sort_by', $this->sortBy));
             $this->setSort(request('sort', $sort));
         }
 
@@ -31,11 +33,12 @@ trait FilterSortTrait
     {
         $model = $this->defaultQuery()->getModel();
 
-        return $this->sortBy ?? $model->getTable().'.'.$model->getKeyName();
+        return $this->sortBy ?? $model->getTable() . '.' . $model->getKeyName();
     }
 
     public function setSortBy(?string $sortBy): self
     {
+
         if (App::runningInConsole()) {
             $this->runningInConsole = true;
         }

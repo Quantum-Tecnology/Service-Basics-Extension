@@ -1,5 +1,15 @@
 # CHANGE LOG
 
+## V2.3.2 (10/04/2025)
+
+# PT-BR
+
+- Ao setar um sortBy, o sortBy setado nao era respeitado. @GustavoSantarosa
+
+# EN
+
+- When setting a sortBy, the set sortBy was not respected. @GustavoSantarosa
+
 ## V2.3.1 (10/04/2025)
 
 # PT-BR
