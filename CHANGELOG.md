@@ -1,14 +1,24 @@
 # CHANGE LOG
 
-## X.X.X
+## V2.3.1 (10/04/2025)
 
 # PT-BR
 
-- Quando não informava o search, sempre pesquisava pelo like independente se haveria ou não @bhcosta90
+- Quando não informava o search, sempre pesquisava pelo like independente se haveria ou não. @bhcosta90
 
 # EN
 
-- When I didn't inform the search, I always searched for the like regardless of whether there would be one or not @bhcosta90
+- When I didn't inform the search, I always searched for the like regardless of whether there would be one or not. @bhcosta90
+
+## V2.3.0 (06/04/2025)
+
+# PT-BR
+
+- Implementado o retorno por Data. @GustavoSantarosa
+
+# EN
+
+- Implemented return by Date. @GustavoSantarosa
 
 ## V2.2.2 (05/04/2025)
 
