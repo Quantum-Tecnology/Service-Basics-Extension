@@ -1,5 +1,15 @@
 # CHANGE LOG
 
+## X.X.X
+
+# PT-BR
+
+- Quando não informava o search, sempre pesquisava pelo like independente se haveria ou não @bhcosta90
+
+# EN
+
+- When I didn't inform the search, I always searched for the like regardless of whether there would be one or not @bhcosta90
+
 ## V2.2.2 (05/04/2025)
 
 # PT-BR
