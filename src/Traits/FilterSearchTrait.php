@@ -30,23 +30,23 @@ trait FilterSearchTrait
         );
 
         $this->defaultQuery()->where(function ($subQuery) {
-            $searchString = str_replace(' ', '%', trim($this->getSearch()));
+            $searchString = trim($this->getSearch());
 
-            $subQuery->where(function ($query) use ($searchString) {
+            $subQuery->when($searchString, fn($query) => $query->where(function ($query) use ($searchString) {
                 foreach ($this->searchableColumns as $column) {
                     $query->orWhere($column, 'LIKE', "%{$searchString}%");
                 }
-            });
 
-            foreach ($this->searchableRelations as $relation => $columns) {
-                $subQuery->orWhereHas($relation, function ($relationQuery) use ($columns, $searchString) {
-                    $relationQuery->where(function ($query) use ($columns, $searchString) {
-                        foreach ($columns as $relationColumn) {
-                            $query->orWhere($relationColumn, 'LIKE', "%{$searchString}%");
-                        }
+                foreach ($this->searchableRelations as $relation => $columns) {
+                    $subQuery->orWhereHas($relation, function ($relationQuery) use ($columns, $searchString) {
+                        $relationQuery->where(function ($query) use ($columns, $searchString) {
+                            foreach ($columns as $relationColumn) {
+                                $query->orWhere($relationColumn, 'LIKE', "%{$searchString}%");
+                            }
+                        });
                     });
-                });
-            }
+                }
+            }));
         });
 
         return $this;
