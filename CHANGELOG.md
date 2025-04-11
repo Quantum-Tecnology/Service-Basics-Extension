@@ -1,14 +1,15 @@
 # CHANGE LOG
 
-## X.X.X
+## V2.3.3 (11/04/2025)
 
 # PT-BR
 
-- Verificar se o model em questão é do base model, se for ele utiliza a parte de arquivos @bhcosta90
+- Verificar se o model em questão é do base model, se for ele utiliza a parte de arquivos. @bhcosta90 in https://github.com/Quantum-Tecnology/Service-Basics-Extension/pull/10.
 
 # EN
 
-- Check if the model in question is from the base model; if so, it uses the file-related functionality. @bhcosta90
+- Check if the model in question is from the base model; if so, it uses the file-related functionality. @bhcosta90 in https://github.com/Quantum-Tecnology/Service-Basics-Extension/pull/10.
+
 ## V2.3.2 (10/04/2025)
 
 # PT-BR
