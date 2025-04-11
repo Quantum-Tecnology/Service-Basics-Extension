@@ -25,7 +25,7 @@ trait UpdateServiceTrait
 
             $this->getModel()->save();
 
-            if (in_array(FilesTrait::class, class_uses($this->getModel()), true)) {
+            if (in_array(FilesTrait::class, class_uses($this), true)) {
                 $this->destroyFiles();
                 $this->updateFiles();
                 $this->createFiles();
