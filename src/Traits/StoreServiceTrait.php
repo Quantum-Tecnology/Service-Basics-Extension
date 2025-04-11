@@ -4,15 +4,16 @@ namespace QuantumTecnology\ServiceBasicsExtension\Traits;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use QuantumTecnology\ModelBasicsExtension\BaseModel;
 
-trait StoreServiceTrait
+trait UpdateServiceTrait
 {
     use FilesTrait;
 
-    public function store(): Model
+    public function update(int $id): Model
     {
         $this->setData($this->existsData ? $this->data : data());
-        $model = $this->getModel();
+        $model = $this->getModel()->findOrfail($id);
         $model->fill($this->data->toArray());
         $this->setModel($model);
 
@@ -25,7 +26,11 @@ trait StoreServiceTrait
 
             $this->getModel()->save();
 
-            $this->createFiles();
+            if ($this->getModel() instanceof BaseModel) {
+                $this->destroyFiles();
+                $this->updateFiles();
+                $this->createFiles();
+            }
 
             return $this->getModel()->refresh();
         });

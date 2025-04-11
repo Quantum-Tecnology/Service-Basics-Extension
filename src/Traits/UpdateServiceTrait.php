@@ -4,6 +4,7 @@ namespace QuantumTecnology\ServiceBasicsExtension\Traits;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use QuantumTecnology\ModelBasicsExtension\BaseModel;
 
 trait UpdateServiceTrait
 {
@@ -25,9 +26,11 @@ trait UpdateServiceTrait
 
             $this->getModel()->save();
 
-            $this->destroyFiles();
-            $this->updateFiles();
-            $this->createFiles();
+            if ($this->getModel() instanceof BaseModel) {
+                $this->destroyFiles();
+                $this->updateFiles();
+                $this->createFiles();
+            }
 
             return $this->getModel()->refresh();
         });
