@@ -25,7 +25,9 @@ trait StoreServiceTrait
 
             $this->getModel()->save();
 
-            $this->createFiles();
+            if (in_array(FilesTrait::class, class_uses($this), true)) {
+                $this->createFiles();
+            }
 
             return $this->getModel()->refresh();
         });

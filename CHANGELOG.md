@@ -1,5 +1,14 @@
 # CHANGE LOG
 
+## X.X.X
+
+# PT-BR
+
+- Verificar se o model em questão é do base model, se for ele utiliza a parte de arquivos @bhcosta90
+
+# EN
+
+- Check if the model in question is from the base model; if so, it uses the file-related functionality. @bhcosta90
 ## V2.3.2 (10/04/2025)
 
 # PT-BR
