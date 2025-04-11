@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace QuantumTecnology\ServiceBasicsExtension\Traits;
 
 use Illuminate\Database\Eloquent\Model;
@@ -11,6 +13,8 @@ trait UpdateServiceTrait
 
     public function update(int $id): Model
     {
+        $this->updating();
+
         $this->setData($this->existsData ? $this->data : data());
         $model = $this->getModel()->findOrfail($id);
         $model->fill($this->data->toArray());
@@ -25,15 +29,23 @@ trait UpdateServiceTrait
 
             $this->getModel()->save();
 
-            if (in_array(FilesTrait::class, class_uses($this), true)) {
-                $this->destroyFiles();
-                $this->updateFiles();
-                $this->createFiles();
-            }
+            $this->destroyFiles();
+            $this->updateFiles();
+            $this->createFiles();
 
-            return $this->getModel()->refresh();
+            return $this->updated()->refresh();
         });
 
         return $transaction;
+    }
+
+    protected function updating(): void
+    {
+        //
+    }
+
+    protected function updated(): Model
+    {
+        return $this->getModel();
     }
 }

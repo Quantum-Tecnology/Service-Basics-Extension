@@ -1,5 +1,15 @@
 # CHANGE LOG
 
+## V2.4.0 (11/04/2025)
+
+# PT-BR
+
+- Implementado metodos de pre e pós nas seguintes traits store, update, destroy e restore. @GustavoSantarosa @bhcosta90.
+
+# EN
+
+- Implemented pre and post methods in the following traits: store, update, destroy, and restore. @GustavoSantarosa @bhcosta90.
+
 ## V2.3.3 (11/04/2025)
 
 # PT-BR

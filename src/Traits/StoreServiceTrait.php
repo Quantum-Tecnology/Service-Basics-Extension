@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace QuantumTecnology\ServiceBasicsExtension\Traits;
 
 use Illuminate\Database\Eloquent\Model;
@@ -11,7 +13,10 @@ trait StoreServiceTrait
 
     public function store(): Model
     {
+        $this->storing();
+
         $this->setData($this->existsData ? $this->data : data());
+
         $model = $this->getModel();
         $model->fill($this->data->toArray());
         $this->setModel($model);
@@ -25,13 +30,21 @@ trait StoreServiceTrait
 
             $this->getModel()->save();
 
-            if (in_array(FilesTrait::class, class_uses($this), true)) {
-                $this->createFiles();
-            }
+            $this->createFiles();
 
-            return $this->getModel()->refresh();
+            return $this->stored()->refresh();
         });
 
         return $transaction;
+    }
+
+    protected function storing(): void
+    {
+        //
+    }
+
+    protected function stored(): Model
+    {
+        return $this->getModel();
     }
 }
