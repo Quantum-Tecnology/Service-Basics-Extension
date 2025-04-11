@@ -8,8 +8,7 @@
 
 # EN
 
-- Check if the model in question is from the base model, if so it uses the files part @bhcosta90
-
+- Check if the model in question is from the base model; if so, it uses the file-related functionality. @bhcosta90
 ## V2.3.2 (10/04/2025)
 
 # PT-BR
