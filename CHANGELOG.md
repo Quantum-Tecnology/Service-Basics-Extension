@@ -4,6 +4,16 @@
 
 # PT-BR
 
+- Corrigido um problema que estava ocorrendo na trait de files e storeService. @GustavoSantarosa
+
+# EN
+
+- Fixed an issue that was occurring in the files trait and storeService. @GustavoSantarosa
+
+## V2.4.0 (11/04/2025)
+
+# PT-BR
+
 - Implementado metodos de pre e pós nas seguintes traits store, update, destroy e restore. @GustavoSantarosa @bhcosta90.
 
 # EN

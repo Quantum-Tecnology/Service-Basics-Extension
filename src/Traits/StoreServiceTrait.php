@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace QuantumTecnology\ServiceBasicsExtension\Traits;
 
@@ -22,13 +22,13 @@ trait StoreServiceTrait
         $this->setModel($model);
 
         $transaction = DB::transaction(function () {
-            collect($this->data)->each(function ($value, $indice) {
+            $this->getModel()->save();
+
+            collect($this->data->toArray())->each(function ($value, $indice) {
                 if (is_array($value)) {
                     $this->getModel()->$indice()->sync($value, $this->sync);
                 }
             });
-
-            $this->getModel()->save();
 
             $this->createFiles();
 
@@ -40,7 +40,6 @@ trait StoreServiceTrait
 
     protected function storing(): void
     {
-        //
     }
 
     protected function stored(): Model
