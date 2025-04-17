@@ -1,5 +1,15 @@
 # CHANGE LOG
 
+## X.X.X
+
+# PT-BR
+
+- Corrigindo um problema de que tenta utilizar um metodo de uma trait que não existe em todas as models. @bhcosta90
+
+# EN
+
+- Fixing an issue where you try to use a method from a trait that doesn't exist in all models @bhcosta90
+
 ## V2.4.0 (11/04/2025)
 
 # PT-BR
