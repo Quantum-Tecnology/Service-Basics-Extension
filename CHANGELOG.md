@@ -1,6 +1,6 @@
 # CHANGE LOG
 
-## V2.4.1 (17/04/2025)
+## V2.4.2 (17/04/2025)
 
 # PT-BR
 
@@ -9,6 +9,16 @@
 # EN
 
 - Fixing an issue where you try to use a method from a trait that doesn't exist in all models @bhcosta90
+
+## V2.4.1 (12/04/2025)
+
+# PT-BR
+
+- Corrigido um problema que estava ocorrendo na trait de files e storeService. @GustavoSantarosa
+
+# EN
+
+- Fixed an issue that was occurring in the files trait and storeService. @GustavoSantarosa
 
 ## V2.4.0 (11/04/2025)
 
