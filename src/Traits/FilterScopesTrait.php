@@ -23,7 +23,7 @@ trait FilterScopesTrait
             ->each(function ($scope, $key) {
                 $nameFilter = str("by_{$key}")->camel()->toString();
                 $nameScoped = str("scope_by_{$key}")->camel()->toString();
-                if (!method_exists($this->getModel(), $nameScoped)) {
+                if (!method_exists($this->getModel(), $nameScoped) && !method_exists($this->getModel(), $nameFilter)) {
                     return;
                 }
 
