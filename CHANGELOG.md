@@ -1,5 +1,15 @@
 # CHANGE LOG
 
+## X.X.X
+
+# PT-BR
+
+- No laravel 12, não usamos mais a palavra scope no começo para podermos filtrar @bhcosta90
+
+# EN
+
+- In laravel 12, we no longer use the word scope at the beginning so we can filter @bhcosta90
+
 ## V2.4.3 (22/04/2025)
 
 # PT-BR
