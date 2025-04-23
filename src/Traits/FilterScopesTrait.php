@@ -23,6 +23,10 @@ trait FilterScopesTrait
             ->each(function ($scope, $key) {
                 $nameFilter = str("by_{$key}")->camel()->toString();
                 $nameScoped = str("scope_by_{$key}")->camel()->toString();
+                if (!method_exists($this->getModel(), $nameScoped)) {
+                    return;
+                }
+
                 $dataFilter = collect(explode('|', $filter ?? ''))
                     ->filter(fn ($item) => filled($item))
                     ->toArray();

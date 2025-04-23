@@ -1,5 +1,15 @@
 # CHANGE LOG
 
+## V2.4.3 (22/04/2025)
+
+# PT-BR
+
+- Corrigido um problema na trait de scope, filtros de relações eram executados na model principal. @GustavoSantarosa
+
+# EN
+
+- Fixed a problem with Scope Trait, relationship filters were executed in the main model. @GustavoSantarosa
+
 ## V2.4.2 (17/04/2025)
 
 # PT-BR
