@@ -1,5 +1,15 @@
 # CHANGE LOG
 
+## X.X.X (23/04/2025)
+
+# PT-BR
+
+- Para filtrar os relacionamentos, esta dando erro que a variavel não existe. @bhcosta90
+
+# EN
+
+- To filter the relationships, it is giving an error that the variable does not exist. @bhcosta90
+
 ## V2.4.4 (23/04/2025)
 
 # PT-BR

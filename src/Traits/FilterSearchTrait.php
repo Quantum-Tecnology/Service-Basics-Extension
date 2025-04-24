@@ -38,7 +38,7 @@ trait FilterSearchTrait
                 }
 
                 foreach ($this->searchableRelations as $relation => $columns) {
-                    $subQuery->orWhereHas($relation, function ($relationQuery) use ($columns, $searchString) {
+                    $query->orWhereHas($relation, function ($relationQuery) use ($columns, $searchString) {
                         $relationQuery->where(function ($query) use ($columns, $searchString) {
                             foreach ($columns as $relationColumn) {
                                 $query->orWhere($relationColumn, 'LIKE', "%{$searchString}%");
