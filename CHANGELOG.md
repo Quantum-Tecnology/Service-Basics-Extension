@@ -1,5 +1,15 @@
 # CHANGE LOG
 
+## V2.4.5 (24/04/2025)
+
+# PT-BR
+
+- Descontinuado uma function `setQueryCustom`, por ser redudante, utilizar a `defaultQuery`. @GustavoSantarosa
+
+# EN
+
+- Discontinued the `setQueryCustom` function as it is redundant; use `defaultQuery` instead. @GustavoSantarosa
+
 ## V2.4.4 (23/04/2025)
 
 # PT-BR
