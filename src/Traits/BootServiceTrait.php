@@ -167,17 +167,26 @@ trait BootServiceTrait
     /**
      * Default query.
      */
-    protected function defaultQuery(): Builder
+    protected function defaultQuery(?Builder $query = null): Builder
     {
+        if (is_null($this->query)) {
+            $this->query = $query;
+        }
+
         $this->query = $this->query ?? $this->getModel()::query();
 
         return $this->query;
     }
 
-    public function setCustomQuery(Builder $customQuery): void
+    /**
+     * @deprecated this method is deprecated and will be removed in future versions
+     * @see defaultQuery()
+     * @since 2.4.5
+     */
+    public function setCustomQuery(Builder $query): void
     {
         if (is_null($this->query)) {
-            $this->query = $customQuery;
+            $this->query = $query;
         }
     }
 

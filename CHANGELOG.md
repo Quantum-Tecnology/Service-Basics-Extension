@@ -10,6 +10,36 @@
 
 - To filter the relationships, it is giving an error that the variable does not exist. @bhcosta90
 
+## V2.4.7 (24/04/2025)
+
+# PT-BR
+
+- Removido uma criação de atributo de `allowedIncludes` de archive model que nao é mais utilizado. @GustavoSantarosa
+
+# EN
+
+- Removed the creation of the `allowedIncludes` attribute from the archive model as it is no longer used. @GustavoSantarosa
+
+## V2.4.6 (24/04/2025)
+
+# PT-BR
+
+- Alterado a variavel que era armazenada que ja estava depreciada para a query pura. @GustavoSantarosa
+
+# EN
+
+- Changed the variable that was stored, which was already deprecated, to the pure query. @GustavoSantarosa
+
+## V2.4.5 (24/04/2025)
+
+# PT-BR
+
+- Descontinuado uma function `setQueryCustom`, por ser redudante, utilizar a `defaultQuery`. @GustavoSantarosa
+
+# EN
+
+- Discontinued the `setQueryCustom` function as it is redundant; use `defaultQuery` instead. @GustavoSantarosa
+
 ## V2.4.4 (23/04/2025)
 
 # PT-BR

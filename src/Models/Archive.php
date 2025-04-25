@@ -23,8 +23,6 @@ class Archive extends BaseModel
         'key',
     ];
 
-    public $allowedIncludes = [];
-
     public function archivable(): MorphTo
     {
         return $this->morphTo();
