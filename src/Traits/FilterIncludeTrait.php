@@ -20,7 +20,7 @@ trait FilterIncludeTrait
 
         $callback = $this->includeCallable;
 
-        $this->customQuery = $callback($this->defaultQuery());
+        $this->query = $callback($this->defaultQuery());
     }
 
     /**

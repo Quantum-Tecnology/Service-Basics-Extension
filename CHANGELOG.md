@@ -1,5 +1,15 @@
 # CHANGE LOG
 
+## V2.4.6 (24/04/2025)
+
+# PT-BR
+
+- Alterado a variavel que era armazenada que ja estava depreciada para a query pura. @GustavoSantarosa
+
+# EN
+
+- Changed the variable that was stored, which was already deprecated, to the pure query. @GustavoSantarosa
+
 ## V2.4.5 (24/04/2025)
 
 # PT-BR
