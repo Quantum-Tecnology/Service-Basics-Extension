@@ -1,5 +1,15 @@
 # CHANGE LOG
 
+## V2.4.7 (24/04/2025)
+
+# PT-BR
+
+- Removido uma criação de atributo de `allowedIncludes` de archive model que nao é mais utilizado. @GustavoSantarosa
+
+# EN
+
+- Removed the creation of the `allowedIncludes` attribute from the archive model as it is no longer used. @GustavoSantarosa
+
 ## V2.4.6 (24/04/2025)
 
 # PT-BR
