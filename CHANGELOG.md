@@ -1,5 +1,15 @@
 # CHANGE LOG
 
+## V2.4.9 (25/04/2025)
+
+# PT-BR
+
+- Melhorado a forma como o file é deletado na trait, facilitando e diminuindo e otimizando o form data recebido. @GustavoSantarosa
+
+# EN
+
+- Improved the way the file is deleted in the trait, making it easier and optimizing the received form data. @GustavoSantarosa
+
 ## V2.4.8 (24/04/2025)
 
 # PT-BR

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace QuantumTecnology\ServiceBasicsExtension\Traits;
 
@@ -9,7 +9,9 @@ use Illuminate\Support\Facades\Storage;
 
 trait FilesTrait
 {
-    protected Collection | array $files = [];
+    protected Collection|array $files = [];
+
+    public const DELETE = 'delete';
 
     protected function checkFile(
         string $nameInData = 'files',
@@ -22,17 +24,32 @@ trait FilesTrait
             $this->files[$nameInData] = collect(data()->$nameInData)
                 ->transform(function ($file, $index) use ($name, $rule, $meta, $path) {
                     $file['order'] = $index;
-                    $file['main']  = 0 === $index;
+                    $file['main']  = false;
                     $file['name']  = $name;
                     $file['meta']  = $meta;
                     $file['path']  = $path;
                     $file['rule']  = $rule;
 
                     return $file;
+                })
+                ->values();
+
+            $firstNonDeletedKey = $this->files[$nameInData]
+                ->search(function ($file) {
+                    return ($file['action'] ?? null) !== self::DELETE;
                 });
 
-            unset(data()->$nameInData);
+            if (false !== $firstNonDeletedKey) {
+                $this->files[$nameInData] = $this->files[$nameInData]->map(function ($file, $key) use ($firstNonDeletedKey) {
+                    if ($key === $firstNonDeletedKey) {
+                        $file['main'] = true;
+                    }
 
+                    return $file;
+                });
+            }
+
+            unset(data()->$nameInData);
             $this->setData(data());
         }
 
@@ -46,17 +63,18 @@ trait FilesTrait
             ->archives();
 
         collect($this->files)->each(function ($fileType) use (&$query) {
-            collect($fileType)->each(function ($file) use (&$query) {
-
-                $query
-                    ->when($file['id'] ?? false, function ($query) use ($file) {
-                        $query->where(function ($query) use ($file) {
-                            $query
-                                ->where('name', $file['name'])
-                                ->whereNot('id', $file['id']);
+            collect($fileType)
+                ->where('action', self::DELETE)
+                ->each(function ($file) use (&$query) {
+                    $query
+                        ->when($file['id'] ?? false, function ($query) use ($file) {
+                            $query->where(function ($query) use ($file) {
+                                $query
+                                    ->where('name', $file['name'])
+                                    ->where('id', $file['id']);
+                            });
                         });
-                    });
-            });
+                });
         });
 
         $query
