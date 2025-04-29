@@ -1,5 +1,15 @@
 # CHANGE LOG
 
+## X.X.X
+
+# PT-BR
+
+- Quando cria ou atualiza um determinado registro, realiza-se o show novamente para buscar os dados corretamente. @bhcosta90
+
+# EN
+
+- When you create or update a particular record, the show is performed again to fetch the data correctly. @bhcosta90
+
 ## V2.4.9 (25/04/2025)
 
 # PT-BR
