@@ -20,7 +20,7 @@ trait FilterSearchTrait
         }
 
         if (!$this->runningInConsole) {
-            $this->setSearch(request('search', $this->getSearch()));
+            $this->setSearch(request(config('servicebase.parameters_default.search'), $this->getSearch()));
         }
 
         abort_if(

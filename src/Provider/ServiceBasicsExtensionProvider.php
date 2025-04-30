@@ -14,6 +14,10 @@ class ServiceBasicsExtensionProvider extends ServiceProvider
     public function register()
     {
         $this->app->alias('service', \QuantumTecnology\ServiceBasicsExtension\Middleware\ServiceMiddleware::class);
+        $this->mergeConfigFrom(
+            __DIR__.'/../config/servicebase.php',
+            'servicebase'
+        );
     }
 
     /**
@@ -23,5 +27,8 @@ class ServiceBasicsExtensionProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->publishes([
+            __DIR__.'/../config/servicebase.php' => config_path('servicebase.php'),
+        ], 'config');
     }
 }

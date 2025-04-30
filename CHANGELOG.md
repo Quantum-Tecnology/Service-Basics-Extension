@@ -1,14 +1,16 @@
 # CHANGE LOG
 
-## X.X.X
+## V2.4.10 (29/04/2025)
 
 # PT-BR
 
-- Quando cria ou atualiza um determinado registro, realiza-se o show novamente para buscar os dados corretamente. @bhcosta90
+- Criado config para parametros padroes no repositorio. @GustavoSantarosa
+- Quando cria ou atualiza um determinado registro, realiza-se o show novamente para buscar os dados corretamente. @bhcosta90 in https://github.com/Quantum-Tecnology/Service-Basics-Extension/pull/15
 
 # EN
 
-- When you create or update a particular record, the show is performed again to fetch the data correctly. @bhcosta90
+- Created config for default parameters in the repository. @GustavoSantarosa
+- When you create or update a particular record, the show is performed again to fetch the data correctly. @bhcosta90 in https://github.com/Quantum-Tecnology/Service-Basics-Extension/pull/15
 
 ## V2.4.9 (25/04/2025)
 
