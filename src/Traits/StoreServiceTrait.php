@@ -31,8 +31,10 @@ trait StoreServiceTrait
             });
 
             $this->createFiles();
+            $this->stored();
 
-            return $this->stored()->refresh();
+            $id = $this->getModel()->getKeyName();
+            return $this->show($this->getModel()->{$id});
         });
 
         return $transaction;

@@ -35,7 +35,9 @@ trait UpdateServiceTrait
                 $this->createFiles();
             }
 
-            return $this->updated()->refresh();
+            $this->updated();
+
+            return $this->show($this->getModel()->{$id});
         });
 
         return $transaction;
