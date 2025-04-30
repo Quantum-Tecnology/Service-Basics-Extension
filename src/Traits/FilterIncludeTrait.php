@@ -10,7 +10,7 @@ trait FilterIncludeTrait
 
     private function addIncludeFilter(?string $includes = ''): void
     {
-        if (blank($this->dataIncludes = request('includes', $includes))) {
+        if (blank($this->dataIncludes = request(config('servicebase.parameters.includes'), $includes))) {
             return;
         }
 

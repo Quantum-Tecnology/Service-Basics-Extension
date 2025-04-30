@@ -18,7 +18,7 @@ trait FilterTrashTrait
         }
 
         if (!$this->runningInConsole) {
-            $this->setTrashed(request('trash', $this->getTrashed()));
+            $this->setTrashed(request(config('servicebase.parameters_default.trash'), $this->getTrashed()));
         }
 
         if (blank($this->getTrashed())) {

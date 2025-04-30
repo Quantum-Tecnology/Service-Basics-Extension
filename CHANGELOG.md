@@ -1,5 +1,15 @@
 # CHANGE LOG
 
+## V2.4.10 (29/04/2025)
+
+# PT-BR
+
+- Criado config para parametros padroes no repositorio. @GustavoSantarosa
+
+# EN
+
+- Created config for default parameters in the repository. @GustavoSantarosa
+
 ## V2.4.9 (25/04/2025)
 
 # PT-BR

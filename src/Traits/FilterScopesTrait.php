@@ -16,7 +16,7 @@ trait FilterScopesTrait
         }
 
         if (!$this->runningInConsole) {
-            $this->setScopes(request('filter', []));
+            $this->setScopes(request(config('servicebase.parameters_default.filter'), []));
         }
 
         $this->getScopes()
