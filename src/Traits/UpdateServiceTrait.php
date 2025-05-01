@@ -20,7 +20,7 @@ trait UpdateServiceTrait
         $model->fill($this->data->toArray());
         $this->setModel($model);
 
-        $transaction = DB::transaction(function () {
+        $transaction = DB::transaction(function () use($id) {
             collect($this->data)->each(function ($value, $indice) {
                 if (is_array($value)) {
                     $this->getModel()->$indice()->sync($value, $this->sync);
