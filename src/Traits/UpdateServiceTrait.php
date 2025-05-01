@@ -13,7 +13,7 @@ trait UpdateServiceTrait
 
     public function update(int $id): Model
     {
-        $this->updating();
+        $this->updating($id);
 
         $this->setData($this->existsData ? $this->data : data());
         $model = $this->getModel()->findOrfail($id);
@@ -43,7 +43,7 @@ trait UpdateServiceTrait
         return $transaction;
     }
 
-    protected function updating(): void
+    protected function updating(?int $id = null): void
     {
         //
     }

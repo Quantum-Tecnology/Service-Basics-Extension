@@ -1,5 +1,17 @@
 # CHANGE LOG
 
+## V2.4.11 (01/05/2025)
+
+# PT-BR
+
+- Agora é passado o $id de update para updating. @GustavoSantarosa
+- Corrigido um use dentro de update. @GustavoSantarosa
+
+# EN
+
+- Now the $id of update is passed to updating. @GustavoSantarosa
+- Fixed a use inside update. @GustavoSantarosa
+
 ## V2.4.10 (29/04/2025)
 
 # PT-BR
