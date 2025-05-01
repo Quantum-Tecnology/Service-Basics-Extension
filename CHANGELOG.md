@@ -1,5 +1,15 @@
 # CHANGE LOG
 
+## V2.4.12 (01/05/2025)
+
+# PT-BR
+
+- Passado somente o $id dentro do show no update. @GustavoSantarosa
+
+# EN
+
+- Only the $id is passed inside the show in the update. @GustavoSantarosa
+
 ## V2.4.11 (01/05/2025)
 
 # PT-BR
