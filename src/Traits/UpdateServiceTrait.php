@@ -18,10 +18,11 @@ trait UpdateServiceTrait
         $this->setData($this->existsData ? $this->data : data());
         $model = $this->getModel()->findOrfail($id);
         $model->fill($this->data->toArray());
+
         $this->setModel($model);
 
         $transaction = DB::transaction(function () use ($id) {
-            collect($this->data)->each(function ($value, $indice) {
+            collect($this->data->toArray())->each(function ($value, $indice) {
                 if (is_array($value)) {
                     $this->getModel()->$indice()->sync($value, $this->sync);
                 }

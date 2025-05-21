@@ -1,5 +1,15 @@
 # CHANGE LOG
 
+## V2.4.13 (20/05/2025)
+
+# PT-BR
+
+- Ajustado uma limitação temporaria no update, pois ainda nao permite utilizar o each diretamente. @GustavoSantarosa
+
+# EN
+
+- Adjusted a temporary limitation in update, as it still does not allow using each directly. @GustavoSantarosa
+
 ## V2.4.12 (01/05/2025)
 
 # PT-BR
