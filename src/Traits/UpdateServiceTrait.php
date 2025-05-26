@@ -23,7 +23,7 @@ trait UpdateServiceTrait
 
         $transaction = DB::transaction(function () use ($id) {
             collect($this->data->toArray())->each(function ($value, $indice) {
-                if (is_array($value)) {
+                if (is_array($value) && method_exists($this->getModel(), $indice)) {
                     $this->getModel()->$indice()->sync($value, $this->sync);
                 }
             });

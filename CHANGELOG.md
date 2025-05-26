@@ -1,5 +1,15 @@
 # CHANGE LOG
 
+## X.X.X
+
+# PT-BR
+
+- Verifique se o método existe antes de sincronizar dados relacionados na loja e atualizar serviços. @bhcosta90
+
+# EN
+
+- Ensure method exists before syncing related data in store and update services. @bhcosta90
+
 ## V2.4.13 (20/05/2025)
 
 # PT-BR
