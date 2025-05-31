@@ -1,5 +1,15 @@
 # CHANGE LOG
 
+## X.X.X
+
+# PT-BR
+
+- Correção de upload de arquivos, com problema em update e delete. @bhcosta90
+
+# EN
+
+- File upload fix, with problem on update and delete. @bhcosta90
+
 ## V2.4.14 (26/05/2025)
 
 # PT-BR
