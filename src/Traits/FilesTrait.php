@@ -120,7 +120,7 @@ trait FilesTrait
     {
         collect($this->files)->each(function ($fileType) {
             collect($fileType)->each(function ($file) {
-                if(($file['action'] ?? null) === self::DELETE || ($data['id'] ?? null) !== null) {
+                if(($file['action'] ?? null) === self::DELETE || ($file['id'] ?? null) !== null) {
                     return;
                 }
 
