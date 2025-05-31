@@ -1,17 +1,17 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace QuantumTecnology\ServiceBasicsExtension\Traits;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 
 trait FilesTrait
 {
-    protected Collection|array $files = [];
-
-    public const DELETE = 'delete';
+    public const DELETE                 = 'delete';
+    protected Collection | array $files = [];
 
     protected function checkFile(
         string $nameInData = 'files',
@@ -58,38 +58,33 @@ trait FilesTrait
 
     protected function destroyFiles(): void
     {
-        $query = $this
-            ->getModel()
-            ->archives();
-
-        collect($this->files)->each(function ($fileType) use (&$query) {
+        $id = [];
+        collect($this->files)->each(function ($fileType) use (&$id) {
             collect($fileType)
                 ->where('action', self::DELETE)
-                ->each(function ($file) use (&$query) {
-                    $query
-                        ->when($file['id'] ?? false, function ($query) use ($file) {
-                            $query->where(function ($query) use ($file) {
-                                $query
-                                    ->where('name', $file['name'])
-                                    ->where('id', $file['id']);
-                            });
-                        });
+                ->each(function ($file) use (&$id) {
+                    $id[] = $file['id'];
                 });
         });
 
-        $query
-            ->get()
-            ->each(function ($archive) {
-                Storage::delete($archive->key);
-                $archive->forceDelete();
-            });
+        if ($id) {
+            $this
+                ->getModel()
+                ->archives()
+                ->whereIn('id', $id)
+                ->get()
+                ->each(function ($archive) {
+                    Storage::delete($archive->key);
+                    $archive->forceDelete();
+                });
+        }
     }
 
     protected function updateFiles(): void
     {
         collect($this->files)->each(function ($fileType) {
             collect($fileType)->each(function ($file) {
-                if (isset($file['id'])) {
+                if (isset($file['id']) && ($file['action'] ?? null) !== self::DELETE) {
                     $archive = $this->getModel()
                         ->archives()
                         ->find($file['id']);
@@ -99,6 +94,16 @@ trait FilesTrait
 
                     if (isset($file['active'])) {
                         $archive->active = $file['active'];
+                    }
+
+                    $key = $this->generateKeyUpload($file, $archive);
+
+                    if (
+                        ($file['data'] ?? null)
+                        && ($file['mime'] ?? null)
+                        && Storage::put($key, base64_decode($file['data']), ['ContentType' => $file['mime']])) {
+                        Storage::delete($archive->key);
+                        $archive->key = $key;
                     }
 
                     if ($archive->isDirty()) {
@@ -115,15 +120,12 @@ trait FilesTrait
     {
         collect($this->files)->each(function ($fileType) {
             collect($fileType)->each(function ($file) {
-                $key = sprintf(
-                    '%s/%s/%s/%s/%s_%s',
-                    config('app.env'),
-                    $file['meta'],
-                    $file['rule'],
-                    $file['path'],
-                    $file['name'],
-                    uniqid()
-                );
+                if(($file['action'] ?? null) === self::DELETE || ($file['id'] ?? null) !== null) {
+                    return;
+                }
+
+
+                $key = $this->generateKeyUpload($file);
 
                 if (Storage::put($key, base64_decode($file['data']), ['ContentType' => $file['mime']])) {
                     Storage::setVisibility($key, $file['rule']);
@@ -141,4 +143,18 @@ trait FilesTrait
             });
         });
     }
+
+    protected function generateKeyUpload(array $file, ?Model $model = null): string
+    {
+        return sprintf(
+            '%s/%s/%s/%s/%s_%s',
+            config('app.env'),
+            $file['meta'] ?? $model?->meta,
+            $file['rule'] ?? $model?->rule,
+            $file['path'] ?? $model?->path,
+            $file['name'] ?? $model?->name,
+            uniqid()
+        );
+    }
+
 }
