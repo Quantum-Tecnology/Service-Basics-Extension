@@ -144,7 +144,7 @@ trait FilesTrait
         });
     }
 
-    protected function generateKeyUpload($file, ?Model $model = null): string
+    protected function generateKeyUpload(array $file, ?Model $model = null): string
     {
         return sprintf(
             '%s/%s/%s/%s/%s_%s',
