@@ -1,14 +1,14 @@
 # CHANGE LOG
 
-## X.X.X
+## V2.4.15 (31/05/2025)
 
 # PT-BR
 
-- Correção de upload de arquivos, com problema em update e delete. @bhcosta90
+- Correção de upload de arquivos, com problema em update e delete. @bhcosta90 in https://github.com/Quantum-Tecnology/Service-Basics-Extension/pull/17
 
 # EN
 
-- File upload fix, with problem on update and delete. @bhcosta90
+- File upload fix, with problem on update and delete. @bhcosta90 in https://github.com/Quantum-Tecnology/Service-Basics-Extension/pull/17
 
 ## V2.4.14 (26/05/2025)
 
