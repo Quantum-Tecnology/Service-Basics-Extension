@@ -1,5 +1,15 @@
 # CHANGE LOG
 
+## V2.5.0 (23/06/2025)
+
+# PT-BR
+
+- Incluido validação de case sensitive no search. @GustavoSantarosa
+
+# EN
+
+- Included case-sensitive validation in search. @GustavoSantarosa
+
 ## V2.4.15 (31/05/2025)
 
 # PT-BR

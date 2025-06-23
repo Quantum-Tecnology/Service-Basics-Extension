@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'sensitivity_character' => env('SENSITIVITY_CHARACTER', '!!'),
     'parameters_default' => [
         'includes' => env('INCLUDES_PARAMETER', 'includes'),
         'search'   => env('SEARCH_PARAMETER', 'search'),
