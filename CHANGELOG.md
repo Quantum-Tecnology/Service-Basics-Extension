@@ -4,6 +4,16 @@
 
 # PT-BR
 
+- Ajustado alguns codigos mortos no filter scope trait. @GustavoSantarosa
+
+# EN
+
+- Refactor filter scope method invocation logic. @GustavoSantarosa
+
+## V2.5.0 (23/06/2025)
+
+# PT-BR
+
 - Incluido validação de case sensitive no search. @GustavoSantarosa
 
 # EN
