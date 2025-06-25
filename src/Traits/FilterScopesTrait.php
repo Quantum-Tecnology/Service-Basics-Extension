@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace QuantumTecnology\ServiceBasicsExtension\Traits;
 
 use Illuminate\Support\Collection;
@@ -23,15 +25,12 @@ trait FilterScopesTrait
             ->each(function ($scope, $key) {
                 $nameFilter = str("by_{$key}")->camel()->toString();
                 $nameScoped = str("scope_by_{$key}")->camel()->toString();
-                if (!method_exists($this->getModel(), $nameScoped) && !method_exists($this->getModel(), $nameFilter)) {
-                    return;
+
+                if (method_exists($this->getModel(), $nameScoped)) {
+                    $this->defaultQuery()->$nameScoped();
+                } else if (method_exists($this->getModel(), $nameFilter)) {
+                    $this->defaultQuery()->$nameFilter();
                 }
-
-                $dataFilter = collect(explode('|', $filter ?? ''))
-                    ->filter(fn ($item) => filled($item))
-                    ->toArray();
-
-                $this->defaultQuery()->$nameFilter(array_values($dataFilter));
             });
 
         return $this;
