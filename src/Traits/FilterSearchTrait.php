@@ -41,7 +41,7 @@ trait FilterSearchTrait
                         $searchString = Str::replace(config('servicebase.sensitivity_character'), '', $searchString);
                         $query->orWhere($column, 'LIKE', "%{$searchString}%");
                     } else {
-                        $query->orWhereRaw("REPLACE(LOWER($column), ' ', '-') LIKE ?", ['%' . Str::slug($searchString) . '%']);
+                        $query->orWhereRaw("REPLACE(LOWER(CAST($column AS TEXT)), ' ', '-') LIKE ?", ['%' . Str::slug($searchString) . '%']);
                     }
                 }
 
@@ -53,7 +53,7 @@ trait FilterSearchTrait
                                     $searchString = Str::replace(config('servicebase.sensitivity_character'), '', $searchString);
                                     $query->orWhere($relationColumn, 'LIKE', "%{$searchString}%");
                                 } else {
-                                    $query->orWhereRaw("REPLACE(LOWER($relationColumn), ' ', '-') LIKE ?", ['%' . Str::slug($searchString) . '%']);
+                                    $query->orWhereRaw("REPLACE(LOWER(CAST($relationColumn)), ' ', '-') LIKE ?", ['%' . Str::slug($searchString) . '%']);
                                 }
                             }
                         });

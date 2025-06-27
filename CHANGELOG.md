@@ -1,6 +1,16 @@
 # CHANGE LOG
 
-## V2.5.0 (23/06/2025)
+## V2.5.2 (27/06/2025)
+
+# PT-BR
+
+- Ajustado um problema na função lower quando era passado int, ele só aceita string @GustavoSantarosa
+
+# EN
+
+- Fixed an issue in the lower function when an int was passed; it only accepts strings @GustavoSantarosa
+
+## V2.5.1 (23/06/2025)
 
 # PT-BR
 
