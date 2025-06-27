@@ -25,10 +25,7 @@ trait FilterScopesTrait
             ->each(function ($scope, $key) {
                 $nameFilter = str("by_{$key}")->camel()->toString();
                 $nameScoped = str("scope_by_{$key}")->camel()->toString();
-
-                if (method_exists($this->getModel(), $nameScoped)) {
-                    $this->defaultQuery()->$nameScoped();
-                } else if (method_exists($this->getModel(), $nameFilter)) {
+                if (method_exists($this->getModel(), $nameScoped) || method_exists($this->getModel(), $nameFilter)) {
                     $this->defaultQuery()->$nameFilter();
                 }
             });

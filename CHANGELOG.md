@@ -1,5 +1,15 @@
 # CHANGE LOG
 
+## V2.5.3 (27/06/2025)
+
+# PT-BR
+
+- Verificado no filter de scope que que ao ter o texto scope no metodo, ele era chamado errado. @GustavoSantarosa
+
+# EN
+
+- Verified in the scope filter that when the text "scope" is present in the method, it was being called incorrectly. @GustavoSantarosa
+
 ## V2.5.2 (27/06/2025)
 
 # PT-BR
