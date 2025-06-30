@@ -1,5 +1,15 @@
 # CHANGE LOG
 
+## V2.5.4 (30/06/2025)
+
+# PT-BR
+
+- Fixado um problema no filter de search que estava quebrando ao consultar um search de relacionamento. @GustavoSantarosa
+
+# EN
+
+- Fixed an issue in the search filter that was breaking when querying a relationship search. @GustavoSantarosa
+
 ## V2.5.3 (27/06/2025)
 
 # PT-BR
