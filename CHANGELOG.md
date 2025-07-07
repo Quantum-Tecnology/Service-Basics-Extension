@@ -1,5 +1,15 @@
 # CHANGE LOG
 
+## V2.6.0 (07/07/2025)
+
+# PT-BR
+
+- Adicionado uma configuração para prevenir que o scope seja duplicado. @GustavoSantarosa
+
+# EN
+
+- Added a configuration to prevent the scope from being duplicated. @GustavoSantarosa
+
 ## V2.5.4 (30/06/2025)
 
 # PT-BR
