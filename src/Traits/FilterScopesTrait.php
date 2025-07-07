@@ -18,7 +18,7 @@ trait FilterScopesTrait
             $this->setScopes($scopes);
         }
 
-        if (!$this->runningInConsole) {
+        if (app()->environment('testing') || !app()->runningInConsole()) {
             $this->setScopes(request(config('servicebase.parameters_default.filter'), []));
         }
 
@@ -38,7 +38,7 @@ trait FilterScopesTrait
 
     public function setScopes(?array $scopes): self
     {
-        if (App::runningInConsole()) {
+        if (app()->runningInConsole()) {
             $this->runningInConsole = true;
         }
 

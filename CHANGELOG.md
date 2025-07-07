@@ -1,5 +1,15 @@
 # CHANGE LOG
 
+## V2.6.1 (07/07/2025)
+
+# PT-BR
+
+- Acrescentado exceção para quando a rota for chamado pelo pest. @GustavoSantarosa
+
+# EN
+
+- Added exception for when the route is called by pest. @GustavoSantarosa
+
 ## V2.6.0 (07/07/2025)
 
 # PT-BR
