@@ -1,5 +1,15 @@
 # CHANGE LOG
 
+## V2.6.2 (08/07/2025)
+
+# PT-BR
+
+- Ajustado a condição para quando tiver count no include, estava tendo um problema quando o include era "account" por exemplo. @GustavoSantarosa
+
+# EN
+
+- Adjusted the condition for when there is a count in the include; there was an issue when the include was "account," for example. @GustavoSantarosa
+
 ## V2.6.1 (07/07/2025)
 
 # PT-BR
