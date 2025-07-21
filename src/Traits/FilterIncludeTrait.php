@@ -39,7 +39,7 @@ trait FilterIncludeTrait
                 ->each(function ($relation) use ($query) {
                     $relation = collect(explode(';', $relation))
                         ->transform(function ($collum) use ($query) {
-                            if ('count' === $collum) {
+                            if (str_contains($collum, ':count')) {
                                 $query->withCount(explode(':', $collum)[0]);
 
                                 return;

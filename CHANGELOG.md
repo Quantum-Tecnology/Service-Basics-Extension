@@ -1,5 +1,15 @@
 # CHANGE LOG
 
+## V2.6.3 (21/07/2025)
+
+# PT-BR
+
+- Alterado o ajuste da ultima correção, pois estava quebrando o include de account. @GustavoSantarosa
+
+# EN
+
+- Changed the adjustment of the last fix, as it was breaking the account include. @GustavoSantarosa
+
 ## V2.6.2 (08/07/2025)
 
 # PT-BR
