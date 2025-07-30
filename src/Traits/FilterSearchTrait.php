@@ -41,7 +41,12 @@ trait FilterSearchTrait
                         $searchString = Str::replace(config('servicebase.sensitivity_character'), '', $searchString);
                         $query->orWhere($column, 'LIKE', "%{$searchString}%");
                     } else {
-                        $query->orWhereRaw("REPLACE(LOWER(CAST($column AS TEXT)), ' ', '-') LIKE ?", ['%' . Str::slug($searchString) . '%']);
+                        $slugWithAccents = Str::of($searchString)
+                            ->lower()
+                            ->replace(' ', '-')
+                            ->__toString();
+
+                        $query->orWhereRaw("REPLACE(LOWER(CAST($column AS TEXT)), ' ', '-') LIKE ?", ['%' . $slugWithAccents . '%']);
                     }
                 }
 

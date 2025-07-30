@@ -1,5 +1,15 @@
 # CHANGE LOG
 
+## V2.6.4 (21/07/2025)
+
+# PT-BR
+
+- Ajustado a forma como é procurado no search, pois o postgresql nao remove acento nativamente, entao para respeitar isso, foi adicionado um slug com acentos caso tenha. @GustavoSantarosa
+
+# EN
+
+- Adjusted the way the search is performed, as PostgreSQL does not natively remove accents. Therefore, a slug with accents is added if present. @GustavoSantarosa
+
 ## V2.6.3 (21/07/2025)
 
 # PT-BR
