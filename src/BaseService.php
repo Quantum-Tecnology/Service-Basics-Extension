@@ -4,6 +4,7 @@ namespace QuantumTecnology\ServiceBasicsExtension;
 
 use QuantumTecnology\HandlerBasicsExtension\Traits\ApiResponseTrait;
 use QuantumTecnology\PerPageTrait\PerPageTrait;
+use QuantumTecnology\ServiceBasicsExtension\Contracts\ServiceInterface;
 use QuantumTecnology\ServiceBasicsExtension\Traits\BootServiceTrait;
 use QuantumTecnology\ServiceBasicsExtension\Traits\DestroyServiceTrait;
 use QuantumTecnology\ServiceBasicsExtension\Traits\FilterIncludeTrait;
@@ -16,7 +17,7 @@ use QuantumTecnology\ServiceBasicsExtension\Traits\UpdateServiceTrait;
 use QuantumTecnology\ValidateTrait\AutoDataTrait;
 use QuantumTecnology\ValidateTrait\ValidateTrait;
 
-abstract class BaseService
+abstract class BaseService implements ServiceInterface
 {
     use ValidateTrait;
     use PerPageTrait;

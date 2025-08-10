@@ -1,5 +1,15 @@
 # CHANGE LOG
 
+## V2.6.6 (10/08/2025)
+
+# PT-BR
+
+- migrado o serviceInterface do pacote de controller para o service. @GustavoSantarosa
+
+# EN
+
+- Migrated the serviceInterface from the controller package to the service. @GustavoSantarosa
+
 ## V2.6.5 (10/08/2025)
 
 # PT-BR
