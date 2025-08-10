@@ -1,5 +1,15 @@
 # CHANGE LOG
 
+## V2.6.5 (10/08/2025)
+
+# PT-BR
+
+- Melhorado o fluxo de adicionar scopos, agora é possível adicionar scopes de forma mais intuitiva e flexível. @GustavoSantarosa
+
+# EN
+
+- Improved the flow of adding scopes; now it is possible to add scopes in a more intuitive and flexible way. @GustavoSantarosa
+
 ## V2.6.4 (21/07/2025)
 
 # PT-BR

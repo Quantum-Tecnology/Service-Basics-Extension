@@ -5,7 +5,6 @@ declare(strict_types = 1);
 namespace QuantumTecnology\ServiceBasicsExtension\Traits;
 
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\App;
 
 trait FilterScopesTrait
 {
@@ -14,35 +13,46 @@ trait FilterScopesTrait
 
     public function addScopesFilter(?array $scopes = []): self
     {
-        if (blank($this->getScopes())) {
-            $this->setScopes($scopes);
-        }
+        $this->runningInConsole = app()->runningInConsole();
 
-        if (app()->environment('testing') || !app()->runningInConsole()) {
-            $this->setScopes(request(config('servicebase.parameters_default.filter'), []));
+        $this->setScopes($scopes);
+
+        if (app()->environment('testing') || !$this->runningInConsole) {
+            $this->setScopes(array_keys(request(config('servicebase.parameters_default.filter'), [])));
         }
 
         $this->getScopes()
             ->each(function ($scope, $key) {
-                $nameFilter = str("by_{$key}")->camel()->toString();
-                $nameScoped = str("scope_by_{$key}")->camel()->toString();
-                if ((method_exists($this->getModel(), $nameScoped) || method_exists($this->getModel(), $nameFilter)) && $this->doesntUsedScope($nameFilter)) {
-                    $this->defaultQuery()->$nameFilter();
-
-                    $this->appliedScopes[] = $nameFilter;
-                }
+                $this->defaultQuery()
+                    ->when(
+                        $this->canApplyScope($scope),
+                        fn ($query) => tap($query->$scope(), fn () => $this->appliedScopes[] = $scope),
+                    );
             });
 
         return $this;
     }
 
-    public function setScopes(?array $scopes): self
+    public function setScopes(array | string $scopes): self
     {
-        if (app()->runningInConsole()) {
-            $this->runningInConsole = true;
+        if (is_string($scopes)) {
+            $scopes = explode(',', $scopes);
         }
 
-        $this->scopes = $scopes;
+        $this->scopes = collect($scopes)
+            ->merge($this->scopes ?? [])
+            ->merge(
+                collect($scopes)
+                    ->transform(fn ($scope) => str("by_{$scope}")->camel()->toString())
+            )
+            ->merge(
+                collect($scopes)
+                    ->transform(fn ($scope) => str("scope_by_{$scope}")->camel()->toString())
+            )
+            ->filter(fn ($scope) => method_exists($this->getModel(), $scope))
+            ->unique()
+            ->values()
+            ->all();
 
         return $this;
     }
@@ -52,16 +62,16 @@ trait FilterScopesTrait
         return collect($this->scopes);
     }
 
-    private function doesntUsedScope(string $scope): bool
+    private function canApplyScope(?string $scope): bool
     {
-        if (!config('servicebase.prevent_scopes_duplicated', true)) {
-            return true;
+        if (blank($scope)) {
+            return false;
         }
 
-        if (blank($this->appliedScopes)) {
-            return true;
+        if (config('servicebase.prevent_scopes_duplicated', true)) {
+            return collect($this->appliedScopes)->doesntContain($scope);
         }
 
-        return collect($this->appliedScopes)->doesntContain($scope);
+        return true;
     }
 }
