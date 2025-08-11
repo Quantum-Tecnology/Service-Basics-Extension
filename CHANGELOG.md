@@ -1,5 +1,15 @@
 # CHANGE LOG
 
+## V2.6.7 (11/08/2025)
+
+# PT-BR
+
+- Atualizar assinaturas de método para aceitar os tipos de string e int para IDs. @bhcosta90
+
+# EN
+
+- Update method signatures to accept both string and int types for IDs. @bhcosta90
+
 ## V2.6.6 (10/08/2025)
 
 # PT-BR

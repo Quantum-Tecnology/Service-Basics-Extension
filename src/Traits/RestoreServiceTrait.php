@@ -6,7 +6,7 @@ namespace QuantumTecnology\ServiceBasicsExtension\Traits;
 
 trait RestoreServiceTrait
 {
-    public function restore(int $id): bool
+    public function restore(string | int $id): bool
     {
         $query = $this->defaultQuery();
 
