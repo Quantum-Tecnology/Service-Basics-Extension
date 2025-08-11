@@ -23,6 +23,8 @@ trait FilterScopesTrait
 
         $this->getScopes()
             ->each(function ($scope, $key) {
+                $scope = $this->renameScope($scope);
+
                 $this->defaultQuery()
                     ->when(
                         $this->canApplyScope($scope),
@@ -31,6 +33,15 @@ trait FilterScopesTrait
             });
 
         return $this;
+    }
+
+    protected function renameScope(string $scope): string
+    {
+        if (str_starts_with($scope, 'scopeBy')) {
+            $scope = lcfirst(substr($scope, 5));
+        }
+
+        return $scope;
     }
 
     public function setScopes(array | string $scopes): self

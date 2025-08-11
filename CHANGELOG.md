@@ -1,5 +1,15 @@
 # CHANGE LOG
 
+## V2.6.8 (11/08/2025)
+
+# PT-BR
+
+- Adicione a funcionalidade de renomeação de escopo para melhorar o manuseio de consultas. @bhcosta90
+
+# EN
+
+- add scope renaming functionality to improve query handling. @bhcosta90
+
 ## V2.6.7 (11/08/2025)
 
 # PT-BR
