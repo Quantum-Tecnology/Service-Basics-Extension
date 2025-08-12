@@ -12,7 +12,7 @@ trait ShowServiceTrait
 
     protected bool $runningInConsole = false;
 
-    public function show(int $id): Model
+    public function show(string | int $id): Model
     {
         $this->addIncludeFilter();
 
