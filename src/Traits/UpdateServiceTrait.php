@@ -11,7 +11,7 @@ trait UpdateServiceTrait
 {
     use FilesTrait;
 
-    public function update(string | int $id): Model
+    public function update(int $id): Model
     {
         $this->updating($id);
 
@@ -44,7 +44,7 @@ trait UpdateServiceTrait
         return $transaction;
     }
 
-    protected function updating(string | int | null $id = null): void
+    protected function updating(?int $id = null): void
     {
         //
     }

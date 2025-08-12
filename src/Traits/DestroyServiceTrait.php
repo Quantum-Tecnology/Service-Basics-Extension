@@ -6,7 +6,7 @@ namespace QuantumTecnology\ServiceBasicsExtension\Traits;
 
 trait DestroyServiceTrait
 {
-    public function destroy(string | int $id): bool
+    public function destroy(int $id): bool
     {
         $user = $this->show($id);
 
