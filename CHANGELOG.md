@@ -10,6 +10,16 @@
 
 - Update method signatures to accept both string and int types for IDs. @bhcosta90
 
+## V2.6.9 (13/08/2025)
+
+# PT-BR
+
+- Acrescentado filter para o scope de softDelete. @GustavoSantarosa
+
+# EN
+
+- Added filter for the softDelete scope. @GustavoSantarosa
+
 ## V2.6.8 (11/08/2025)
 
 # PT-BR
