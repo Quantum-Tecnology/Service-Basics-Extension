@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace QuantumTecnology\ServiceBasicsExtension\Traits;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -18,7 +20,9 @@ trait FilterTrashTrait
         }
 
         if (!$this->runningInConsole) {
-            $this->setTrashed(request(config('servicebase.parameters_default.trash'), $this->getTrashed()));
+            $this->setTrashed(request((string) config('servicebase.parameters_default.trash'), $this->getTrashed()));
+
+            $this->setTrashed(request('filter.'.config('servicebase.parameters_default.trash'), $this->getTrashed()));
         }
 
         if (blank($this->getTrashed())) {
@@ -44,11 +48,6 @@ trait FilterTrashTrait
         };
     }
 
-    private function isTrashable(): bool
-    {
-        return !blank($this->getTrashed()) && !in_array(SoftDeletes::class, class_uses($this->getModel()));
-    }
-
     public function getTrashed(): ?string
     {
         return $this->trashed;
@@ -63,5 +62,10 @@ trait FilterTrashTrait
         $this->trashed = $trashed;
 
         return $this;
+    }
+
+    private function isTrashable(): bool
+    {
+        return !blank($this->getTrashed()) && !in_array(SoftDeletes::class, class_uses($this->getModel()));
     }
 }
