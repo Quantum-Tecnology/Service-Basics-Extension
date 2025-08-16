@@ -10,6 +10,16 @@
 
 - Update method signatures to accept both string and int types for IDs. @bhcosta90
 
+## V2.6.10 (15/08/2025)
+
+# PT-BR
+
+- Acrescentado validação no store para quando tiver uma collection dentro do payload inves de um array. @GustavoSantarosa
+
+# EN
+
+- Added validation in store for when there is a collection inside the payload instead of an array. @GustavoSantarosa
+
 ## V2.6.9 (13/08/2025)
 
 # PT-BR

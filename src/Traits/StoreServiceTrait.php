@@ -1,11 +1,12 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace QuantumTecnology\ServiceBasicsExtension\Traits;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Model;
 
 trait StoreServiceTrait
 {
@@ -18,13 +19,20 @@ trait StoreServiceTrait
         $this->setData($this->existsData ? $this->data : data());
 
         $model = $this->getModel();
-        $model->fill($this->data->toArray());
+        $attributes = $this->data->only($model->getFillable());
+        $relations = $this->data->except($model->getFillable());
+
+        $model->fill($attributes->toArray());
         $this->setModel($model);
 
-        $transaction = DB::transaction(function () {
+        $transaction = DB::transaction(function () use ($relations) {
             $this->getModel()->save();
 
-            collect($this->data->toArray())->each(function ($value, $indice) {
+            collect($relations->toArray())->each(function ($value, $indice) {
+                if ($value instanceof Collection) {
+                    $value = $value->toArray();
+                }
+
                 if (is_array($value) && method_exists($this->getModel(), $indice)) {
                     $this->getModel()->$indice()->sync($value, $this->sync);
                 }
@@ -34,6 +42,7 @@ trait StoreServiceTrait
             $this->stored();
 
             $id = $this->getModel()->getKeyName();
+
             return $this->show($this->getModel()->{$id});
         });
 
