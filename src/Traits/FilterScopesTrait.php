@@ -4,12 +4,14 @@ declare(strict_types = 1);
 
 namespace QuantumTecnology\ServiceBasicsExtension\Traits;
 
+use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
 
 trait FilterScopesTrait
 {
-    public array $appliedScopes = [];
-    protected ?array $scopes    = [];
+    public array $appliedScopes      = [];
+    protected ?array $scopes         = [];
+    protected ?array $allowedFilters = [];
 
     public function addScopesFilter(?array $scopes = []): self
     {
@@ -35,15 +37,6 @@ trait FilterScopesTrait
         return $this;
     }
 
-    protected function renameScope(string $scope): string
-    {
-        if (str_starts_with($scope, 'scopeBy')) {
-            $scope = lcfirst(substr($scope, 5));
-        }
-
-        return $scope;
-    }
-
     public function setScopes(array | string $scopes): self
     {
         if (is_string($scopes)) {
@@ -61,6 +54,7 @@ trait FilterScopesTrait
                     ->transform(fn ($scope) => str("scope_by_{$scope}")->camel()->toString())
             )
             ->filter(fn ($scope) => method_exists($this->getModel(), $scope))
+
             ->unique()
             ->values()
             ->all();
@@ -73,9 +67,35 @@ trait FilterScopesTrait
         return collect($this->scopes);
     }
 
+    public function getAllowedFilters(): array
+    {
+        return $this->allowedFilters ?? [];
+    }
+
+    public function setAllowedFilters(array $allowedFilters): void
+    {
+        $this->allowedFilters = array_values(array_unique(array_merge($this->getAllowedFilters(), $allowedFilters)));
+    }
+
+    protected function renameScope(string $scope): string
+    {
+        if (str_starts_with($scope, 'scopeBy')) {
+            $scope = lcfirst(mb_substr($scope, 5));
+        }
+
+        return $scope;
+    }
+
     private function canApplyScope(?string $scope): bool
     {
+
         if (blank($scope)) {
+            return false;
+        }
+
+        if (!in_array($scope, $this->getAllowedFilters())) {
+            abort_if(config('servicebase.force_throw', false), Response::HTTP_FORBIDDEN, "The scope '{$scope}' is not allowed.");
+
             return false;
         }
 
