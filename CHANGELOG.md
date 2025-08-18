@@ -1,5 +1,16 @@
 # CHANGE LOG
 
+## V2.6.11 (18/08/2025)
+
+# PT-BR
+
+- Acrescentado o getAllowedFilters e setAllowedFilters. @GustavoSantarosa
+- Acrescentado validação e uma variavel de ambiente para forçar o throw. @GustavoSantarosa
+
+# EN
+- Added getAllowedFilters and setAllowedFilters. @GustavoSantarosa
+- Added validation and an environment variable to force the throw. @GustavoSantarosa
+
 ## V2.6.10 (15/08/2025)
 
 # PT-BR

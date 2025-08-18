@@ -32,6 +32,17 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Force Throw
+    |--------------------------------------------------------------------------
+    |
+    | If true, the application will throw an exception if a scope is not allowed.
+    | This is useful to ensure that only allowed scopes are applied.
+    |
+    */
+    'force_throw' => env('FORCE_THROW', false),
+
+    /*
+    |--------------------------------------------------------------------------
     | Parameters Default
     |--------------------------------------------------------------------------
     |
