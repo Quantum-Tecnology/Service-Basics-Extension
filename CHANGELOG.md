@@ -1,5 +1,15 @@
 # CHANGE LOG
 
+## V2.6.12 (19/08/2025)
+
+# PT-BR
+
+- Movido a validação para checar se o filter estava liberado, pois no momento que ele era validado ele checava valor bindado e não o valor real do filter. @GustavoSantarosa
+
+# EN
+
+- Moved the validation to check if the filter was allowed, as it previously checked the bound value instead of the actual filter value. @GustavoSantarosa
+
 ## V2.6.11 (18/08/2025)
 
 # PT-BR
@@ -8,6 +18,7 @@
 - Acrescentado validação e uma variavel de ambiente para forçar o throw. @GustavoSantarosa
 
 # EN
+
 - Added getAllowedFilters and setAllowedFilters. @GustavoSantarosa
 - Added validation and an environment variable to force the throw. @GustavoSantarosa
 
