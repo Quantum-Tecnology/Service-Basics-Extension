@@ -10,6 +10,16 @@
 
 - Update method signatures to accept both string and int types for IDs. @bhcosta90
 
+## V2.6.12 (19/08/2025)
+
+# PT-BR
+
+- Movido a validação para checar se o filter estava liberado, pois no momento que ele era validado ele checava valor bindado e não o valor real do filter. @GustavoSantarosa
+
+# EN
+
+- Moved the validation to check if the filter was allowed, as it previously checked the bound value instead of the actual filter value. @GustavoSantarosa
+
 ## V2.6.11 (18/08/2025)
 
 # PT-BR
