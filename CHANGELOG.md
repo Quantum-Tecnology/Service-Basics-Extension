@@ -1,5 +1,15 @@
 # CHANGE LOG
 
+## V3.0.1 (22/08/2025)
+
+# PT-BR
+
+- Alterando initializedAutoDataTrait para BaseService para melhor organização. @bhcosta90
+
+# EN
+
+- Move initializedAutoDataTrait to BaseService for better organization. @bhcosta90
+
 ## V3.0.0 (12/08/2025)
 
 # PT-BR
