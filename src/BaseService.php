@@ -32,4 +32,9 @@ abstract class BaseService implements ServiceInterface
     use DestroyServiceTrait;
     use RestoreServiceTrait;
     use BootServiceTrait;
+
+    protected $initializedAutoDataTrait = [
+        'store',
+        'update',
+    ];
 }

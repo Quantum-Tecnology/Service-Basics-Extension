@@ -27,11 +27,6 @@ trait BootServiceTrait
 
     protected array $searchableRelations = [];
 
-    protected $initializedAutoDataTrait = [
-        'store',
-        'update',
-    ];
-
     /**
      * The array of booted models.
      *
