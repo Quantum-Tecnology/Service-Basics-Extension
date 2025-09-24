@@ -1,5 +1,15 @@
 # CHANGE LOG
 
+## V3.0.2 (24/09/2025)
+
+# PT-BR
+
+- Melhorado a detecção do método de escopo em FilterScopesTrait. @GustavoSantarosa
+
+# EN
+
+- Improved scope method detection in FilterScopesTrait. @GustavoSantarosa
+
 ## V3.0.1 (22/08/2025)
 
 # PT-BR
