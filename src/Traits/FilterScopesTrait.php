@@ -4,8 +4,11 @@ declare(strict_types = 1);
 
 namespace QuantumTecnology\ServiceBasicsExtension\Traits;
 
+use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
+use ReflectionClass;
 
 trait FilterScopesTrait
 {
@@ -62,8 +65,7 @@ trait FilterScopesTrait
                 collect($scopes)
                     ->transform(fn ($scope) => str("scope_by_{$scope}")->camel()->toString())
             )
-            ->filter(fn ($scope) => method_exists($this->getModel(), $scope))
-
+            ->filter(fn ($scope) => $this->isScopeMethod($this->getModel(), $scope))
             ->unique()
             ->values()
             ->all();
@@ -107,5 +109,19 @@ trait FilterScopesTrait
         }
 
         return true;
+    }
+
+    private function isScopeMethod(Model $model, string $methodName): bool
+    {
+        if (!method_exists($model, $methodName)) {
+            return false;
+        }
+
+        $reflection = new ReflectionClass($model);
+        $method     = $reflection->getMethod($methodName);
+
+        $attributes = $method->getAttributes(Scope::class);
+
+        return !empty($attributes) || preg_match('/^(?:scopeBy|by)/i', $methodName) === 1;
     }
 }
