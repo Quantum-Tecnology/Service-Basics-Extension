@@ -48,6 +48,7 @@ trait FilterScopesTrait
 
         $this->scopes = collect($scopes)
             ->merge($this->scopes ?? [])
+            ->transform(fn ($scope) => str($scope)->replace('.', '_')->toString())
             ->filter(function ($scope) {
                 if (!in_array($scope, $this->getAllowedFilters())) {
                     abort_if(config('servicebase.force_throw', false), Response::HTTP_FORBIDDEN, "The scope '{$scope}' is not allowed.");
@@ -59,10 +60,12 @@ trait FilterScopesTrait
             })
             ->merge(
                 collect($scopes)
+                    ->transform(fn ($scope) => str($scope)->replace('.', '_')->toString())
                     ->transform(fn ($scope) => str("by_{$scope}")->camel()->toString())
             )
             ->merge(
                 collect($scopes)
+                    ->transform(fn ($scope) => str($scope)->replace('.', '_')->toString())
                     ->transform(fn ($scope) => str("scope_by_{$scope}")->camel()->toString())
             )
             ->filter(fn ($scope) => $this->isScopeMethod($this->getModel(), $scope))
