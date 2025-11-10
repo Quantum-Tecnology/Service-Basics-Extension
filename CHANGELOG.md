@@ -1,5 +1,15 @@
 # CHANGE LOG
 
+## V3.0.3 (10/11/2025)
+
+# PT-BR
+
+- Implementado o filter passando relação, ex: ?filter[relation.field]=value, ele converte para relation_field. @GustavoSantarosa
+
+# EN
+
+- Implemented filter passing relation, e.g., ?filter[relation.field]=value, it converts to relation_field. @GustavoSantarosa
+
 ## V3.0.2 (24/09/2025)
 
 # PT-BR
