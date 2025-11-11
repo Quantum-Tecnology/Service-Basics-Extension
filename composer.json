@@ -10,7 +10,7 @@
     "quantumtecnology/validate-trait": "^2.0",
     "quantumtecnology/perpage-trait": "^2.0",
     "quantumtecnology/model-basics-extension": "^2.0",
-    "quantumtecnology/handler-basics-extension": "^2.2"
+    "quantumtecnology/handler-basics-extension": "2.2.0"
   },
   "require-dev": {
     "friendsofphp/php-cs-fixer": "^3.64"
