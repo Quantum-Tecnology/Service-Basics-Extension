@@ -46,6 +46,8 @@ trait StoreServiceTrait
             return $this->show($this->getModel()->{$id});
         });
 
+        $this->storedAfterCommit();
+
         return $transaction;
     }
 
@@ -54,6 +56,11 @@ trait StoreServiceTrait
     }
 
     protected function stored(): Model
+    {
+        return $this->getModel();
+    }
+
+    protected function storedAfterCommit(): Model
     {
         return $this->getModel();
     }

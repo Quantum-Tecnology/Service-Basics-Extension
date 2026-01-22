@@ -41,6 +41,8 @@ trait UpdateServiceTrait
             return $this->show($id);
         });
 
+        $this->updatedAfterCommit();
+
         return $transaction;
     }
 
@@ -50,6 +52,11 @@ trait UpdateServiceTrait
     }
 
     protected function updated(): Model
+    {
+        return $this->getModel();
+    }
+
+    protected function updatedAfterCommit(): Model
     {
         return $this->getModel();
     }
