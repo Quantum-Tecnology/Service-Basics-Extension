@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace QuantumTecnology\ServiceBasicsExtension\Models;
 
 use Carbon\Carbon;
@@ -21,6 +23,13 @@ class Archive extends BaseModel
         'active',
         'order',
         'key',
+        'disk',
+        'mime_type',
+        'size',
+    ];
+
+    protected $casts = [
+        'size' => 'integer',
     ];
 
     public function archivable(): MorphTo
@@ -29,12 +38,40 @@ class Archive extends BaseModel
     }
 
     /**
+     * Get the file contents.
+     */
+    public function getContents(): string
+    {
+        return Storage::disk($this->disk)->get($this->key);
+    }
+
+    /**
+     * Get the full URL for the archived file.
+     */
+    public function getUrlAttribute(): string
+    {
+        return Storage::disk($this->disk)->url($this->key);
+    }
+
+    /**
+     * Delete the file from storage when the model is deleted.
+     */
+    protected static function booted(): void
+    {
+        static::deleting(function (Archive $archive) {
+            if (Storage::disk($archive->disk)->exists($archive->key)) {
+                Storage::disk($archive->disk)->delete($archive->key);
+            }
+        });
+    }
+
+    /**
      * Get the formated s3Key.
      */
     protected function UrlKey(): Attribute
     {
         return new Attribute(
-            get: fn ($value) => $value ? Storage::url($value) : null,
+            get: fn ($value) => $value ? $this->getUrlAttribute() : null,
         );
     }
 
@@ -44,7 +81,7 @@ class Archive extends BaseModel
     protected function url(): Attribute
     {
         return new Attribute(
-            get: fn () => $this->key ? Storage::url($this->key) : null,
+            get: fn () => $this->key ? $this->getUrlAttribute() : null,
         );
     }
 
@@ -84,7 +121,7 @@ class Archive extends BaseModel
     protected function base64(): Attribute
     {
         return new Attribute(
-            get: fn () => $this->key ? base64_encode(Storage::get($this->key)) : null,
+            get: fn () => $this->key ? base64_encode($this->getContents()) : null,
         );
     }
 }

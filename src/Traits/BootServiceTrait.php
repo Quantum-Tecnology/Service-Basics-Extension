@@ -16,7 +16,7 @@ trait BootServiceTrait
 
     protected $model;
 
-    protected ?Model $defaultModel;
+    protected ?Model $defaultModel = null;
 
     /**
      * Query applied to specified request.
@@ -121,6 +121,10 @@ trait BootServiceTrait
 
     public function getModel(): Model
     {
+        if (is_null($this->defaultModel) && !is_null($this->model)) {
+            $this->defaultModel = new $this->model();
+        }
+
         return $this->defaultModel;
     }
 
