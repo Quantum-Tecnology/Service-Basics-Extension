@@ -6,6 +6,7 @@ namespace QuantumTecnology\ServiceBasicsExtension\Traits;
 
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 trait FilterSearchTrait
@@ -34,8 +35,9 @@ trait FilterSearchTrait
 
         $this->defaultQuery()->where(function ($subQuery) {
             $searchString = mb_trim($this->getSearch());
+            $castType = DB::getDriverName() === 'pgsql' ? 'TEXT' : 'CHAR';
 
-            $subQuery->when($searchString, fn ($query) => $query->where(function ($query) use ($searchString) {
+            $subQuery->when($searchString, fn ($query) => $query->where(function ($query) use ($searchString, $castType) {
                 foreach ($this->searchableColumns as $column) {
                     if (Str::startsWith($searchString, config('servicebase.sensitivity_character')) && Str::endsWith($searchString, config('servicebase.sensitivity_character'))) {
                         $searchString = Str::replace(config('servicebase.sensitivity_character'), '', $searchString);
@@ -46,19 +48,19 @@ trait FilterSearchTrait
                             ->replace(' ', '-')
                             ->__toString();
 
-                        $query->orWhereRaw("REPLACE(LOWER(CAST($column AS TEXT)), ' ', '-') LIKE ?", ['%' . $slugWithAccents . '%']);
+                        $query->orWhereRaw("REPLACE(LOWER(CAST($column AS $castType)), ' ', '-') LIKE ?", ['%' . $slugWithAccents . '%']);
                     }
                 }
 
                 foreach ($this->searchableRelations as $relation => $columns) {
-                    $query->orWhereHas($relation, function ($relationQuery) use ($columns, $searchString) {
-                        $relationQuery->where(function ($query) use ($columns, $searchString) {
+                    $query->orWhereHas($relation, function ($relationQuery) use ($columns, $searchString, $castType) {
+                        $relationQuery->where(function ($query) use ($columns, $searchString, $castType) {
                             foreach ($columns as $relationColumn) {
                                 if (Str::startsWith($searchString, config('servicebase.sensitivity_character')) && Str::endsWith($searchString, config('servicebase.sensitivity_character'))) {
                                     $searchString = Str::replace(config('servicebase.sensitivity_character'), '', $searchString);
                                     $query->orWhere($relationColumn, 'LIKE', "%{$searchString}%");
                                 } else {
-                                    $query->orWhereRaw("REPLACE(LOWER(CAST($relationColumn AS TEXT)), ' ', '-') LIKE ?", ['%' . Str::slug($searchString) . '%']);
+                                    $query->orWhereRaw("REPLACE(LOWER(CAST($relationColumn AS $castType)), ' ', '-') LIKE ?", ['%' . Str::slug($searchString) . '%']);
                                 }
                             }
                         });
