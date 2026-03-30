@@ -1,17 +1,18 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace QuantumTecnology\ServiceBasicsExtension\Traits;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\DB;
 
 trait UpdateServiceTrait
 {
     use FilesTrait;
 
-    public function update(string | int $id): Model
+    public function update(string|int $id): Model
     {
         $this->updating($id);
 
@@ -24,6 +25,12 @@ trait UpdateServiceTrait
         $transaction = DB::transaction(function () use ($id) {
             collect($this->data->toArray())->each(function ($value, $indice) {
                 if (is_array($value) && method_exists($this->getModel(), $indice)) {
+                    if ($this->getModel()->$indice() instanceof HasOne) {
+                        $this->getModel()->$indice()->update($value);
+
+                        return;
+                    }
+
                     $this->getModel()->$indice()->sync($value, $this->sync);
                 }
             });
@@ -46,9 +53,8 @@ trait UpdateServiceTrait
         return $transaction;
     }
 
-    protected function updating(string | int | null $id = null): void
+    protected function updating(string|int|null $id = null): void
     {
-        //
     }
 
     protected function updated(): Model
