@@ -7,6 +7,7 @@ namespace QuantumTecnology\ServiceBasicsExtension\Traits;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 trait StoreServiceTrait
 {
@@ -34,6 +35,11 @@ trait StoreServiceTrait
                 }
 
                 if (is_array($value) && method_exists($this->getModel(), $indice)) {
+                    if($this->getModel()->$indice() instanceof HasOne) {
+                        $this->getModel()->$indice()->updateOrCreate([], $value);
+                        return;
+                    }
+
                     $this->getModel()->$indice()->sync($value, $this->sync);
                 }
             });
