@@ -26,7 +26,7 @@ trait UpdateServiceTrait
             collect($this->data->toArray())->each(function ($value, $indice) {
                 if (is_array($value) && method_exists($this->getModel(), $indice)) {
                     if ($this->getModel()->$indice() instanceof HasOne) {
-                        $this->getModel()->$indice()->update($value);
+                        $this->getModel()->$indice()->updateOrCreate([], $value);
 
                         return;
                     }
