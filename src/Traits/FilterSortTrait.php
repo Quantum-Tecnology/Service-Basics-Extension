@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace QuantumTecnology\ServiceBasicsExtension\Traits;
 
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Schema;
 
 trait FilterSortTrait
 {
@@ -31,9 +32,23 @@ trait FilterSortTrait
 
     public function getSortBy(): ?string
     {
-        $model = $this->defaultQuery()->getModel();
+        $model            = $this->defaultQuery()->getModel();
+        $defaultSortBy    = $model->getTable().'.'.$model->getKeyName();
+        $requestedSortBy  = $this->sortBy;
 
-        return $this->sortBy ?? $model->getTable().'.'.$model->getKeyName();
+        if (null === $requestedSortBy || 'random' === $requestedSortBy) {
+            return $requestedSortBy ?? $defaultSortBy;
+        }
+
+        [$table, $column] = str_contains($requestedSortBy, '.')
+            ? explode('.', $requestedSortBy, 2)
+            : [$model->getTable(), $requestedSortBy];
+
+        if (!Schema::hasColumn($table, $column)) {
+            return $defaultSortBy;
+        }
+
+        return $requestedSortBy;
     }
 
     public function setSortBy(?string $sortBy): self
