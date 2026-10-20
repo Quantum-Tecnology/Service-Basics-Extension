@@ -1,5 +1,15 @@
 # CHANGE LOG
 
+## V3.0.18 (20/10/2026)
+
+# PT-BR
+
+- `?search=`, `?sort_by=`/`?sort=` e `?trash=` passam a ser lidos da request também no ambiente `testing`, como o `?filter[]` já era. Antes, como o Pest roda pela CLI, `runningInConsole()` era `true` e esses parâmetros eram ignorados em teste: uma busca devolvia a listagem inteira e o teste parecia acusar erro no `searchableColumns`. Produção (FPM) não muda. @GustavoSantarosa
+
+# EN
+
+- `?search=`, `?sort_by=`/`?sort=` and `?trash=` are now read from the request in the `testing` environment too, as `?filter[]` already was. Since Pest runs from the CLI, `runningInConsole()` was `true` and these parameters were ignored in tests: a search returned the whole listing. Production (FPM) is unchanged. @GustavoSantarosa
+
 ## V3.0.5 (10/11/2025)
 
 # PT-BR

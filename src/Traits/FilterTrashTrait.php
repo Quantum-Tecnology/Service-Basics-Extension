@@ -19,7 +19,7 @@ trait FilterTrashTrait
             $this->setTrashed($trashed);
         }
 
-        if (!$this->runningInConsole) {
+        if (app()->environment('testing') || !$this->runningInConsole) {
             $this->setTrashed(request((string) config('servicebase.parameters_default.trash'), $this->getTrashed()));
 
             $this->setTrashed(request('filter.'.config('servicebase.parameters_default.trash'), $this->getTrashed()));
