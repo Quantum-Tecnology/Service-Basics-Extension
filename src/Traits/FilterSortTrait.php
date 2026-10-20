@@ -14,7 +14,7 @@ trait FilterSortTrait
 
     public function addSortFilter(?string $sortBy = null, string $sort = 'asc'): self
     {
-        if (!$this->runningInConsole) {
+        if (app()->environment('testing') || !$this->runningInConsole) {
             $this->setSortBy($sortBy ?? request(config('servicebase.parameters_default.sort_by'), $this->sortBy));
             $this->setSort(request(config('servicebase.parameters_default.sort'), $sort));
         }

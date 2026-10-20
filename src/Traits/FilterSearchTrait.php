@@ -23,7 +23,7 @@ trait FilterSearchTrait
             $this->setSearch($search);
         }
 
-        if (!$this->runningInConsole) {
+        if (app()->environment('testing') || !$this->runningInConsole) {
             $this->setSearch((string) request(config('servicebase.parameters_default.search'), $this->getSearch()));
         }
 
